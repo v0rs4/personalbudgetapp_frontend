@@ -11,6 +11,7 @@ import {setAccessToken, authorize} from './action_creators';
 // App
 import {AppContainer} from './components/App';
 import {BudgetDomainsContainer} from './components/BudgetDomains';
+import {SignInContainer} from './components/SignIn'
 // Create redux store
 const createStoreWithMiddleware = applyMiddleware(
   thunk
@@ -19,8 +20,11 @@ const store = createStoreWithMiddleware(reducer);
 // Init accessToken
 store.dispatch(authorize(localStorage.getItem('accessToken')));
 // Create react routes
-const routes = <Route component={AppContainer}>
-  <Route path="/budget_domains" component={BudgetDomainsContainer} />
+const routes = <Route>
+  <Route component={AppContainer}>
+    <Route path="/budget_domains" component={BudgetDomainsContainer} />
+  </Route>
+  <Route path="/sign_in" component={SignInContainer} />
 </Route>
 // Render
 ReactDom.render(

@@ -31,8 +31,22 @@ export function setAccessToken(accessToken){
 
 export function authorize(accessToken) {
   return dispatch => {
-    API.fetchTokenInfo(accessToken).then(body => {
+    API.fetchTokenInfo(accessToken)
+    .then(body => {
       dispatch(setAccessToken(accessToken));
+    })
+    .catch(error => {
+      if (error.response.status == 401) {
+        console.log('redirect to /sign_in')
+      }
+    })
+  }
+}
+
+export function authenticate(username, password) {
+  return dispatch => {
+    API.authenticate(username, password).then(body => {
+      dispatch(setAccessToken(body.access_token));
     });
   }
 }

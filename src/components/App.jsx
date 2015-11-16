@@ -7,10 +7,10 @@ import {connect} from 'react-redux';
 export const App = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
-    console.log('authorized', this.props.authorized);
+    window.app = this;
     return  this.props.authorized ?
       this.props.children :
-      null;
+      <span>Unauthenticated</span>
   }
 });
 

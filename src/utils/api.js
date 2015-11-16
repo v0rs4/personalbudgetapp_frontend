@@ -4,6 +4,20 @@ import fetch from 'isomorphic-fetch';
 
 const API_BASE_URL = 'http://localhost:3000';
 
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
+function parseJSON(response) {
+  return response.json();
+}
+
 export function fetchTokenInfo(accessToken) {
   return fetch(`${API_BASE_URL}/oauth/token/info`,{
     headers: {
@@ -12,7 +26,7 @@ export function fetchTokenInfo(accessToken) {
   })
   .then(response => {
     if (response.status >= 200 && response.status < 300) {
-      return response
+      return response;
     } else {
       var error = new Error(response.statusText);
       error.response = response;
@@ -31,4 +45,20 @@ export function fetchBudgetDomains(accessToken) {
   }).then(response => {
     return response.json();
   });
+}
+
+export function authenticate(username, password) {
+  return fetch(`${API_BASE_URL}/oauth/token`, {
+    method: 'post',
+    body: JSON.stringify({
+      grant_type: 'password',
+      username,
+      password
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(checkStatus)
+  .then(parseJSON);
 }

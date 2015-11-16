@@ -8,22 +8,11 @@ export const BudgetDomains = React.createClass({
   getBudgetDomains: function() {
     return this.props.budgetDomains || [];
   },
-  canUpdate: function(entry) {
-    return entry.getIn(['attributes', 'permissions', 'can_update']);
-  },
-  canCreate: function(entry) {
-    return entry.getIn(['attributes', 'permissions', 'can_create']);
-  },
-  canDestroy: function(entry) {
-    return entry.getIn(['attributes', 'permissions', 'can_destroy']);
+  can: function(entry, action) {
+    return entry.getIn(['attributes', 'permissions', `can_${action}`]);
   },
   componentDidMount: function() {
-    this.interval = setInterval(() => {
-      this.props.fetchBudgetDomains('95fbb25c91c52ce7ed5cc5772f06420a281bd99b143e74fc3d1c711808083c63')
-    }, 1500);
-  },
-  componentWillUnmount: function() {
-    clearInterval(this.interval);
+    this.props.fetchBudgetDomains(this.props.accessToken);
   },
   render: function() {
     return <table>
@@ -40,8 +29,8 @@ export const BudgetDomains = React.createClass({
             <td>{entry.getIn(['attributes', 'name'])}</td>
             <td>{entry.getIn(['attributes', 'description'])}</td>
             <td>Show</td>
-            <td>{this.canUpdate(entry) ? 'Edit' : null}</td>
-            <td>{this.canDestroy(entry) ? 'Destroy' : null}</td>
+            <td>{this.can(entry, 'update') ? 'Edit' : null}</td>
+            <td>{this.can(entry, 'destroy') ? 'Destroy' : null}</td>
           </tr>
         )}
       </tbody>
@@ -51,6 +40,7 @@ export const BudgetDomains = React.createClass({
 
 function mapStateToProps(state) {
   return {
+    accessToken: state.get('accessToken'),
     budgetDomains: state.get('budgetDomains')
   };
 }
