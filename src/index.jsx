@@ -1,27 +1,28 @@
+// React
 import React from 'react';
 import ReactDom from 'react-dom';
 import Router, {Route} from 'react-router';
-import {createStore} from 'redux';
+// Redux
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 import reducer from './reducer';
-import App from './components/App';
+import {setAccessToken} from './action_creators';
+// App
+import {AppContainer} from './components/App';
 import {BudgetDomainsContainer} from './components/BudgetDomains';
-
-const store = createStore(reducer);
-store.dispatch({
-  type: 'SET_STATE',
-  state: {
-    budgetDomains: [
-      {"id":"1","type":"budget_domains","attributes":{"name":"Home","description":"Pauk's family budget","permissions":{"can_create":true,"can_read":true,"can_update":false,"can_destroy":false}}},
-      {"id":"6","type":"budget_domains","attributes":{"name":"Pauk Fam","description":"","permissions":{"can_create":true,"can_read":true,"can_update":true,"can_destroy":true}}}
-    ]
-  }
-});
-
-const routes = <Route component={App}>
+// Create redux store
+const createStoreWithMiddleware = applyMiddleware(
+  thunk
+)(createStore);
+const store = createeStoreWithMiddleware(reducer);
+// Init accessToken
+store.dispatch(setAccessToken(localStorage.getItem('accessToken')));
+// Create react routes
+const routes = <Route component={AppContainer}>
   <Route path="/budget_domains" component={BudgetDomainsContainer} />
 </Route>
-
+// Render
 ReactDom.render(
   <Provider store={store}>
     <Router>{routes}</Router>
