@@ -6,11 +6,9 @@ import {connect} from 'react-redux';
 
 export const App = React.createClass({
   mixins: [PureRenderMixin],
-  accessTokenValid: function(){
-    return true;
-  },
   render: function() {
-    return  this.accessTokenValid() ?
+    console.log('authorized', this.props.authorized);
+    return  this.props.authorized ?
       this.props.children :
       null;
   }
@@ -18,7 +16,8 @@ export const App = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    accessToken: state.get('accessToken')
+    accessToken: state.get('accessToken'),
+    authorized: state.get('authorized')
   };
 }
 

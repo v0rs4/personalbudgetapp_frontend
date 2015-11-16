@@ -7,7 +7,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer';
-import {setAccessToken} from './action_creators';
+import {setAccessToken, authorize} from './action_creators';
 // App
 import {AppContainer} from './components/App';
 import {BudgetDomainsContainer} from './components/BudgetDomains';
@@ -15,9 +15,9 @@ import {BudgetDomainsContainer} from './components/BudgetDomains';
 const createStoreWithMiddleware = applyMiddleware(
   thunk
 )(createStore);
-const store = createeStoreWithMiddleware(reducer);
+const store = createStoreWithMiddleware(reducer);
 // Init accessToken
-store.dispatch(setAccessToken(localStorage.getItem('accessToken')));
+store.dispatch(authorize(localStorage.getItem('accessToken')));
 // Create react routes
 const routes = <Route component={AppContainer}>
   <Route path="/budget_domains" component={BudgetDomainsContainer} />

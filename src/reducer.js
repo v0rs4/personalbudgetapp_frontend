@@ -13,7 +13,9 @@ function setBudgetDomains(state, budgetDomains) {
 }
 
 function setAccessToken(state, accessToken) {
-  return state.set('accessToken', accessToken);
+  return state
+    .set('accessToken', accessToken)
+    .set('authorized', true);
 }
 
 export default function(state = Map(), action) {
@@ -26,6 +28,8 @@ export default function(state = Map(), action) {
     return setBudgetDomains(state, action.budgetDomains);
   case 'SET_ACCESS_TOKEN':
     return setAccessToken(state, action.accessToken)
+  case 'AUTHORIZE':
+    return authorize(state)
   }
   return state;
 }

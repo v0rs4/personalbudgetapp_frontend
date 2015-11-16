@@ -29,6 +29,14 @@ export function setAccessToken(accessToken){
   };
 }
 
+export function authorize(accessToken) {
+  return dispatch => {
+    API.fetchTokenInfo(accessToken).then(body => {
+      dispatch(setAccessToken(accessToken));
+    });
+  }
+}
+
 // export function createBudgetDomainWithApi(budgetDomain) {
 //   return dispatch => {
 

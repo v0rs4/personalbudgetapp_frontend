@@ -50,7 +50,6 @@ export const BudgetDomains = React.createClass({
 });
 
 function mapStateToProps(state) {
-  window.state = state;
   return {
     budgetDomains: state.get('budgetDomains')
   };
