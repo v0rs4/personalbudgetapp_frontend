@@ -3,26 +3,21 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Router, {Route} from 'react-router';
 // Redux
-import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
-import reducer from './reducer';
-import {setAccessToken, authorize} from './action_creators';
+import {retrieveToken} from './action_creators';
+import configureStore from './store/configureStore'
 // App
+import Root from './components/Root';
 import {AppContainer} from './components/App';
 import {BudgetDomainsContainer} from './components/BudgetDomains';
 import {SignInContainer} from './components/SignIn'
-// Create redux store
-const createStoreWithMiddleware = applyMiddleware(
-  thunk
-)(createStore);
-const store = createStoreWithMiddleware(reducer);
+const store = configureStore();
 // Init accessToken
-store.dispatch(authorize(localStorage.getItem('accessToken')));
-// Create react routes
-const routes = <Route>
+store.dispatch(retrieveToken());
+// Create react routes; TODO: add Root component
+const routes = <Route component={Root}>
   <Route component={AppContainer}>
-    <Route path="/budget_domains" component={BudgetDomainsContainer} />
+    <Route path="/" component={BudgetDomainsContainer} />
   </Route>
   <Route path="/sign_in" component={SignInContainer} />
 </Route>

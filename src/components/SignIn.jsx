@@ -3,10 +3,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
 
-
 export const SignIn = React.createClass({
   mixins: [PureRenderMixin],
-  submitHandler: function(event){
+  submitHandler: function(event) {
     event.preventDefault();
     let username = this.refs.username.value.trim();
     let password = this.refs.password.value.trim();
@@ -20,7 +19,6 @@ export const SignIn = React.createClass({
     </form>
   }
 });
-
 
 function mapStateToProps(state) {
   return {};

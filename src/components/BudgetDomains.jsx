@@ -12,7 +12,8 @@ export const BudgetDomains = React.createClass({
     return entry.getIn(['attributes', 'permissions', `can_${action}`]);
   },
   componentDidMount: function() {
-    this.props.fetchBudgetDomains(this.props.accessToken);
+    // this.props.fetchBudgetDomains(this.props.accessToken);
+    this.props._loadBudgetDomains();
   },
   render: function() {
     return <table>

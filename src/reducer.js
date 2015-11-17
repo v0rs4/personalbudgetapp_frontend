@@ -13,9 +13,11 @@ function setBudgetDomains(state, budgetDomains) {
 }
 
 function setAccessToken(state, accessToken) {
-  return state
-    .set('accessToken', accessToken)
-    .set('authorized', true);
+  return state.set('accessToken', accessToken);
+}
+
+function setAuthenticated(state) {
+  return state.set('authenticated', true);
 }
 
 export default function(state = Map(), action) {
@@ -27,9 +29,18 @@ export default function(state = Map(), action) {
   case 'SET_BUDGET_DOMAINS':
     return setBudgetDomains(state, action.budgetDomains);
   case 'SET_ACCESS_TOKEN':
-    return setAccessToken(state, action.accessToken)
-  case 'AUTHORIZE':
-    return authorize(state)
+    return setAccessToken(state, action.accessToken);
+  case 'SET_AUTHENTICATED':
+    return setAuthenticated(state);
+  case 'BUDGET_DOMAINS_REQUEST':
+    // console.log('BUDGET_DOMAINS_REQUEST', action);
+    break;
+  case 'BUDGET_DOMAINS_SUCCESS':
+    // console.log('BUDGET_DOMAINS_SUCCESS', action);
+    return setBudgetDomains(state, action.response.data);
+  case 'BUDGET_DOMAINS_FAILURE':
+    console.log('BUDGET_DOMAINS_FAILURE', action);
+    break;
   }
   return state;
 }
