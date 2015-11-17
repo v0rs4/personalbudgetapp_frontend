@@ -8,6 +8,7 @@ import {retrieveToken} from './action_creators';
 import configureStore from './store/configureStore'
 // App
 import Root from './components/Root';
+import DevTools from './components/DevTools';
 import {AppContainer} from './components/App';
 import {BudgetDomainsContainer} from './components/BudgetDomains';
 import {SignInContainer} from './components/SignIn'
@@ -24,7 +25,10 @@ const routes = <Route component={Root}>
 // Render
 ReactDom.render(
   <Provider store={store}>
-    <Router>{routes}</Router>
+    <div>
+      <Router>{routes}</Router>
+      <DevTools />
+    </div>
   </Provider>,
   document.getElementById('app')
 );
