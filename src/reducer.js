@@ -40,6 +40,12 @@ export default function(state = Map(), action) {
     return setBudgetDomains(state, action.response.data);
   case 'BUDGET_DOMAINS_FAILURE':
     break;
+  case 'TOKEN_INFO_REQUEST':
+    break;
+  case 'TOKEN_INFO_SUCCESS':
+    return setAuthenticated(state);
+  case 'TOKEN_INFO_FAILURE':
+    break;
   }
   return state;
 }

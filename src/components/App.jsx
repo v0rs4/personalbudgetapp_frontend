@@ -8,9 +8,7 @@ import * as actionCreators from '../action_creators';
 export const App = React.createClass({
   mixins: [PureRenderMixin],
   componentDidMount: function(){
-    this.props.authorizeAccessToken(
-      this.props.accessToken
-    )
+    this.props.authorizeAccessToken()
   },
   render: function() {
     window.app = this;

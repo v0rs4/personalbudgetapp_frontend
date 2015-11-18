@@ -5,7 +5,8 @@ import fetch from 'isomorphic-fetch';
 const {API_BASE_URL} = CONFIG
 
 const ENDPOINT_MAPPER  = {
-  '/api/v1/budget_domains': fetchBudgetDomains
+  '/api/v1/budget_domains': fetchBudgetDomains,
+  '/oauth/token/info': fetchTokenInfo
 };
 
 function authHeader(accessToken) {

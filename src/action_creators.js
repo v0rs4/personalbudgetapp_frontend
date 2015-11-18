@@ -34,20 +34,6 @@ export function setAuthenticated(){
     type: 'SET_AUTHENTICATED'
   };
 }
-export function authorizeAccessToken(accessToken) {
-  return dispatch => {
-    API.fetchTokenInfo(accessToken)
-    .then(body => {
-      dispatch(setAccessToken(accessToken));
-      dispatch(setAuthenticated());
-    })
-    .catch(error => {
-      if (error.response.status == 401) {
-        hashHistory.push('/sign_in') // redux router
-      }
-    })
-  }
-}
 export function authenticate(username, password) {
   return dispatch => {
     API.authenticate(username, password).then(body => {
@@ -70,9 +56,18 @@ export function fetchBudgetDomains() {
     }
   }
 }
+export function authorizeAccessToken() {
+  return {
+    callAPI: {
+      types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],
+      endpoint: '/oauth/token/info',
+      authorization: true
+    }
+    // [wip] add middleware that handles it
+    // redirectProtocol: function(action) {
+    //   if (action.type === 'TOKEN_INFO_FAILURE') {
+    //     hashHistory.push('/sign_in') // TODO: add redux router
+    //   }
+    // }
+  };
 }
-// export function saveToken(accessToken){
-//   return dispatch => {
-//     localStorage.setItem('accessToken', accessToken)
-//   }
-// }
