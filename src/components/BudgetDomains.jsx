@@ -13,7 +13,7 @@ export const BudgetDomains = React.createClass({
   },
   componentDidMount: function() {
     // this.props.fetchBudgetDomains(this.props.accessToken);
-    this.props._loadBudgetDomains();
+    this.props.fetchBudgetDomains();
   },
   render: function() {
     return <table>

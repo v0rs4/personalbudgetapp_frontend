@@ -61,20 +61,15 @@ export function retrieveToken(){
     dispatch(setAccessToken(accessToken));
   }
 }
-export function _fetchBudgetDomains(accessToken) {
+export function fetchBudgetDomains() {
   return {
     callAPI: {
-      types: [ 'BUDGET_DOMAINS_REQUEST', 'BUDGET_DOMAINS_SUCCESS','BUDGET_DOMAINS_FAILURE'],
+      types: ['BUDGET_DOMAINS_REQUEST', 'BUDGET_DOMAINS_SUCCESS','BUDGET_DOMAINS_FAILURE'],
       endpoint: '/api/v1/budget_domains',
       authorization: true,
     }
   }
 }
-export function _loadBudgetDomains() {
-  return (dispatch, getState) => {
-    const accessToken = getState().get('accessToken');
-    dispatch(_fetchBudgetDomains(accessToken))
-  }
 }
 // export function saveToken(accessToken){
 //   return dispatch => {
