@@ -4,7 +4,18 @@ import fetch from 'isomorphic-fetch';
 
 const {API_BASE_URL} = CONFIG
 
-const ENDPOINT_MAPPER   '/api/v1/budget_domains': fetchBudgetDomains
+const ENDPOINT_MAPPER  = {
+  '/api/v1/budget_domains': fetchBudgetDomains
+};
+
+function authHeader(accessToken) {
+  return {
+    'Authorization': `Bearer ${accessToken}`
+  };
+}
+
+const headers = {
+  'Content-Type': 'application/json'
 };
 
 function checkStatus(response) {
@@ -38,9 +49,7 @@ export function call(endpoint, {accessToken = undefined, authorization}) {
 
 export function fetchTokenInfo(accessToken) {
   return fetch(`${API_BASE_URL}/oauth/token/info`,{
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
+    headers: Object.assign({}, headers, authHeader(accessToken))
   })
   .then(response => {
     if (response.status >= 200 && response.status < 300) {
@@ -57,9 +66,7 @@ export function fetchTokenInfo(accessToken) {
 
 export function fetchBudgetDomains(accessToken) {
   return fetch(`${API_BASE_URL}/api/v1/budget_domains`, {
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
+    headers: Object.assign({}, headers, authHeader(accessToken))
   })
   .then(checkStatus)
   .then(parseJSON);
@@ -73,9 +80,7 @@ export function authenticate(username, password) {
       username,
       password
     }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    headers: headers
   })
   .then(checkStatus)
   .then(parseJSON);
