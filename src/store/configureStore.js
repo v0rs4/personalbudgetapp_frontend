@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger'
 import reducer from '../reducer';
 import api from '../middlewares/api';
-
+import redirect from '../middlewares/redirect';
 import DevTools from '../components/DevTools';
 
 const logger = createLogger({
@@ -13,7 +13,7 @@ const logger = createLogger({
 });
 
 const finalCreateStore = compose(
-  applyMiddleware(thunk, api, logger),
+  applyMiddleware(thunk, api, redirect, logger),
   DevTools.instrument()
 )(createStore);
 

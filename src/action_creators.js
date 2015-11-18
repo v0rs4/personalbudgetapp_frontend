@@ -62,12 +62,11 @@ export function authorizeAccessToken() {
       types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],
       endpoint: '/oauth/token/info',
       authorization: true
+    },
+    redirectProtocol: function(action, _store) {
+      if (action.type === 'TOKEN_INFO_FAILURE') {
+        hashHistory.push('/sign_in') // TODO: add redux router
+      }
     }
-    // [wip] add middleware that handles it
-    // redirectProtocol: function(action) {
-    //   if (action.type === 'TOKEN_INFO_FAILURE') {
-    //     hashHistory.push('/sign_in') // TODO: add redux router
-    //   }
-    // }
   };
 }
