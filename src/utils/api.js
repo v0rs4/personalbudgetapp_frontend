@@ -2,10 +2,9 @@
 // es6Promise.polyfill();
 import fetch from 'isomorphic-fetch';
 
-const API_BASE_URL = 'http://localhost:3000';
+const {API_BASE_URL} = CONFIG
 
-const ENDPOINT_MAPPER = {
-  '/api/v1/budget_domains': fetchBudgetDomains
+const ENDPOINT_MAPPER   '/api/v1/budget_domains': fetchBudgetDomains
 };
 
 function checkStatus(response) {

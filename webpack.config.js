@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: [
@@ -26,6 +27,9 @@ module.exports = {
     hot: true
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+        CONFIG: require(path.join(__dirname, 'config/environments/development.json'))
+    })
   ]
 };
