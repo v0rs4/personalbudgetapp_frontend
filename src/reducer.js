@@ -1,5 +1,7 @@
 import {Map, fromJS} from 'immutable';
 
+// TODO: split into separate reducers
+
 function setState(state, newState) {
   return state.merge(newState);
 }
@@ -33,13 +35,10 @@ export default function(state = Map(), action) {
   case 'SET_AUTHENTICATED':
     return setAuthenticated(state);
   case 'BUDGET_DOMAINS_REQUEST':
-    // console.log('BUDGET_DOMAINS_REQUEST', action);
     break;
   case 'BUDGET_DOMAINS_SUCCESS':
-    // console.log('BUDGET_DOMAINS_SUCCESS', action);
     return setBudgetDomains(state, action.response.data);
   case 'BUDGET_DOMAINS_FAILURE':
-    console.log('BUDGET_DOMAINS_FAILURE', action);
     break;
   }
   return state;
