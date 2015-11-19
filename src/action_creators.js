@@ -50,6 +50,12 @@ export function authenticate(username, password) {
     }
   };
 }
+export function checkAuthenticated() {
+  return (dispatch, getState) => {
+    const { authenticated } = getState().user.toJS();
+    authenticated && hashHistory.push('/')
+  }
+}
 export function retrieveToken(){
   return dispatch => {
     const accessToken = localStorage.getItem('accessToken');
