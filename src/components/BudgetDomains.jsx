@@ -41,8 +41,7 @@ export const BudgetDomains = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    accessToken: state.get('accessToken'),
-    budgetDomains: state.get('budgetDomains')
+    budgetDomains: state.budgetDomains.get('budgetDomains')
   };
 }
 

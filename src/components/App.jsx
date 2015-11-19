@@ -21,8 +21,8 @@ export const App = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    accessToken: state.get('accessToken'),
-    authenticated: state.get('authenticated')
+    accessToken: state.user.get('accessToken'),
+    authenticated: state.user.get('authenticated')
   };
 }
 

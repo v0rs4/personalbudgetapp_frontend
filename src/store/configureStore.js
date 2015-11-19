@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger'
-import reducer from '../reducer';
+import reducer from '../reducers';
 import api from '../middlewares/api';
 import redirect from '../middlewares/redirect';
 import DevTools from '../components/DevTools';
