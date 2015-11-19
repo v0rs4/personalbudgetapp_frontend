@@ -35,15 +35,24 @@ export function setAuthenticated(){
   };
 }
 export function authenticate(username, password) {
-  return dispatch => {
-    API.authenticate(username, password).then(body => {
-      dispatch(setAccessToken(body.access_token));
-    });
-  }
+  return {
+    callAPI: {
+      types: ['AUTHENTICATE_REQUEST', 'AUTHENTICATE_SUCCESS', 'AUTHENTICATE_FAILURE'],
+      endpoint: '/oauth/token',
+      caller: (api) => {
+        return api.authenticate(username, password)
+      }
+    },
+    redirectProtocol: function(action) {
+      if (action.type === 'AUTHENTICATE_SUCCESS') {
+        hashHistory.push('/') // TODO: add redirectTo feature
+      }
+    }
+  };
 }
 export function retrieveToken(){
   return dispatch => {
-    let accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');
     dispatch(setAccessToken(accessToken));
   }
 }
@@ -52,6 +61,10 @@ export function fetchBudgetDomains() {
     callAPI: {
       types: ['BUDGET_DOMAINS_REQUEST', 'BUDGET_DOMAINS_SUCCESS','BUDGET_DOMAINS_FAILURE'],
       endpoint: '/api/v1/budget_domains',
+      caller: (api, getState) => {
+        const { accessToken } = getState().user.toJS();
+        return api.fetchBudgetDomains(accessToken);
+      },
       authorization: true,
     }
   }
@@ -61,9 +74,12 @@ export function authorizeAccessToken() {
     callAPI: {
       types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],
       endpoint: '/oauth/token/info',
-      authorization: true
+      caller: (api, getState) => {
+        const { accessToken } = getState().user.toJS();
+        return api.fetchTokenInfo(accessToken);
+      }
     },
-    redirectProtocol: function(action, _store) {
+    redirectProtocol: (action) => {
       if (action.type === 'TOKEN_INFO_FAILURE') {
         hashHistory.push('/sign_in') // TODO: add redux router
       }

@@ -7,7 +7,7 @@ export default store => next => action => {
     return next(action);
   }
   // Type checking
-  const { endpoint, types, authorization } = callAPI;
+  const { endpoint, types, caller } = callAPI;
   if (typeof endpoint !== 'string') {
     throw new Error('Specify a string endpoint URL.');
   }
@@ -17,12 +17,11 @@ export default store => next => action => {
   if (!types.every(type => typeof type === 'string')) {
     throw new Error('Expected action types to be strings.');
   }
-  if (typeof authorization !== 'boolean') {
-    throw new Error('Expected authorization to be boolean.');
+  if (typeof caller !== 'function') {
+    throw new Error('Expected caller to be function.');
   }
   // Actual middleware stuff
   const [ requestType, successType, failureType ] = types
-  const accessToken = store.getState().get('accessToken');
 
   function actionWith(data) {
     const finalAction = Object.assign({}, action, data);
@@ -32,7 +31,7 @@ export default store => next => action => {
 
   next(actionWith({ type: requestType }))
 
-  return API.call(endpoint, {accessToken, authorization}).then(
+  return caller(API, store.getState).then(
     response => next(actionWith({
       response,
       type: successType
