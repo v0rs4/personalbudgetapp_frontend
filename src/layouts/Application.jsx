@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 // Action creators
 import * as actionCreators from '../action_creators';
 
-export const App = React.createClass({
+const ApplicationLayout = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return this.props.children
@@ -17,9 +17,7 @@ function mapStateToProps(state) {
   return {};
 }
 
-export const AppContainer = connect(
+export default connect(
   mapStateToProps,
   actionCreators
-)(App);
-
-
+)(ApplicationLayout);

@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {retrieveToken} from './action_creators';
 import configureStore from './store/configureStore'
 // <Root />
-import Root from './components/Root';
+import Root from './containers/Root';
 // Create store
 const store = configureStore();
 // Init accessToken

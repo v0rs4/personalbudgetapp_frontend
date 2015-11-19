@@ -5,7 +5,7 @@ import createLogger from 'redux-logger'
 import reducer from '../reducers';
 import api from '../middlewares/api';
 import redirect from '../middlewares/redirect';
-import DevTools from '../components/DevTools';
+import DevTools from '../containers/DevTools';
 import Immutable from 'immutable';
 import createHistory from 'history/lib/createHashHistory';
 import routes from '../routes'

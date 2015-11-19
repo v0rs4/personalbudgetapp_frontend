@@ -1,9 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
 
-export const BudgetDomains = React.createClass({
+export default React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount: function(){
     this.props.authorizeAccessToken();
@@ -40,14 +38,3 @@ export const BudgetDomains = React.createClass({
     </table>
   }
 });
-
-function mapStateToProps(state) {
-  return {
-    budgetDomains: state.budgetDomains.get('budgetDomains')
-  };
-}
-
-export const BudgetDomainsContainer = connect(
-  mapStateToProps,
-  actionCreators
-)(BudgetDomains);

@@ -1,9 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
 
-export const SignIn = React.createClass({
+export default React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount: function() {
     this.props.checkAuthenticated();
@@ -22,12 +20,3 @@ export const SignIn = React.createClass({
     </form>
   }
 });
-
-function mapStateToProps(state) {
-  return {};
-}
-
-export const SignInContainer = connect(
-  mapStateToProps,
-  actionCreators
-)(SignIn);
