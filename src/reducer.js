@@ -46,6 +46,14 @@ export default function(state = Map(), action) {
     return setAuthenticated(state);
   case 'TOKEN_INFO_FAILURE':
     break;
+  case 'AUTHENTICATE_REQUEST':
+    break;
+  case 'AUTHENTICATE_SUCCESS':
+    return state
+      .set('accessToken', action.response.access_token)
+      .set('authenticated', true);
+  case 'AUTHENTICATE_FAILURE':
+    break;
   }
   return state;
 }
