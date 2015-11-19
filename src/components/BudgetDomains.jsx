@@ -5,15 +5,17 @@ import * as actionCreators from '../action_creators';
 
 export const BudgetDomains = React.createClass({
   mixins: [PureRenderMixin],
+  componentWillMount: function(){
+    this.props.authorizeAccessToken();
+  },
+  componentDidMount: function() {
+    this.props.fetchBudgetDomains();
+  },
   getBudgetDomains: function() {
     return this.props.budgetDomains || [];
   },
   can: function(entry, action) {
     return entry.getIn(['attributes', 'permissions', `can_${action}`]);
-  },
-  componentDidMount: function() {
-    // this.props.fetchBudgetDomains(this.props.accessToken);
-    this.props.fetchBudgetDomains();
   },
   render: function() {
     return <table>
