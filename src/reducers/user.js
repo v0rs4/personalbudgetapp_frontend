@@ -1,10 +1,16 @@
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 
 function setAccessToken(state, accessToken) {
   return state.set('accessToken', accessToken);
 }
 
-export default function(state = Map(), action) {
+const INITIAL_STATE = fromJS({
+  accessToken: undefined,
+  signedIn: false,
+  authenticated: false
+});
+
+export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case 'SET_ACCESS_TOKEN':
       return setAccessToken(state, action.accessToken);
