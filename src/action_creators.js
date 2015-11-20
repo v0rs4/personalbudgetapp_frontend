@@ -33,8 +33,11 @@ export function authenticate(username, password) {
       caller: (api) => {
         return api.authenticate(username, password)
       },
-      after: (action, dispatch) => {
-        (action.type === 'AUTHENTICATE_SUCCESS') && dispatch(pushState(null, '/'))
+      after: (action, dispatch, getState) => {
+        if(action.type === 'AUTHENTICATE_SUCCESS') {
+          const nextPath = getState().router.location.query.nextPath || '/'
+          dispatch(pushState(null, nextPath))
+        }
       }
     }
   };
@@ -64,9 +67,10 @@ export function authorizeAccessToken() {
         const { accessToken } = getState().user.toJS();
         return api.fetchTokenInfo(accessToken);
       },
-      after: (action, dispatch) => {
+      after: (action, dispatch, getState) => {
         if (action.type === 'TOKEN_INFO_FAILURE') {
-          dispatch(pushState(null, '/sign_in'))
+          const currentPath = getState().router.location.pathname;
+          dispatch(pushState(null, '/sign_in', {nextPath: currentPath}))
         }
       }
     }
