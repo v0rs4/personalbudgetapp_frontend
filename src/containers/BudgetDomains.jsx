@@ -1,7 +1,10 @@
 import React from 'react';
 import BudgetDomains from '../components/BudgetDomains';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import {
+  authenticateUser,
+  fetchBudgetDomains
+} from '../action_creators';
 
 function mapStateToProps(state) {
   return {
@@ -14,6 +17,8 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  actionCreators
+  {
+    authenticateUser,
+    fetchBudgetDomains
+  }
 )(BudgetDomains);
-

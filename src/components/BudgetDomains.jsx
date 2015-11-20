@@ -6,6 +6,10 @@ export default React.createClass({
   componentWillMount: function(){
     this.props.authenticateUser();
   },
+  componentDidMount: function(){
+    const { userSignedIn, fetchBudgetDomains } = this.props
+    userSignedIn && fetchBudgetDomains();
+  },
   componentDidUpdate: function(){
     const {
       userSignedIn,
@@ -15,9 +19,6 @@ export default React.createClass({
     } = this.props
 
     if (userSignedIn && !(fetched || isFetching)) fetchBudgetDomains();
-  },
-  getBudgetDomains: function() {
-    return this.props.budgetDomains || [];
   },
   can: function(entry, action) {
     return entry.getIn(['attributes', 'permissions', `can_${action}`]);
@@ -32,7 +33,7 @@ export default React.createClass({
         </tr>
       </thead>
       <tbody>
-        {this.getBudgetDomains().map(entry =>
+        {this.props.budgetDomains.map(entry =>
           <tr key={entry.get('id')}>
             <td>{entry.getIn(['attributes', 'name'])}</td>
             <td>{entry.getIn(['attributes', 'description'])}</td>
