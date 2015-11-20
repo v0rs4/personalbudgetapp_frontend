@@ -1,8 +1,7 @@
 // Server api related functions
 import * as API from './utils/api';
 // Hash history
-import createHistory from 'history/lib/createHashHistory';
-const hashHistory = createHistory();
+import { pushState } from 'redux-router';
 // Action Creators
 export function setState(state) {
   return {
@@ -33,11 +32,9 @@ export function authenticate(username, password) {
       types: ['AUTHENTICATE_REQUEST', 'AUTHENTICATE_SUCCESS', 'AUTHENTICATE_FAILURE'],
       caller: (api) => {
         return api.authenticate(username, password)
-      }
-    },
-    redirectProtocol: function(action) {
-      if (action.type === 'AUTHENTICATE_SUCCESS') {
-        hashHistory.push('/') // TODO: add redirectTo feature
+      },
+      after: (action, dispatch) => {
+        (action.type === 'AUTHENTICATE_SUCCESS') && dispatch(pushState(null, '/'))
       }
     }
   };
@@ -66,11 +63,11 @@ export function authorizeAccessToken() {
       caller: (api, getState) => {
         const { accessToken } = getState().user.toJS();
         return api.fetchTokenInfo(accessToken);
-      }
-    },
-    redirectProtocol: (action) => {
-      if (action.type === 'TOKEN_INFO_FAILURE') {
-        hashHistory.push('/sign_in') // TODO: add redux router
+      },
+      after: (action, dispatch) => {
+        if (action.type === 'TOKEN_INFO_FAILURE') {
+          dispatch(pushState(null, '/sign_in'))
+        }
       }
     }
   };

@@ -1,5 +1,13 @@
 import * as API from '../utils/api';
 
+function createNextWithCallbacks(next, { dispatch, getState }, { after, before }){
+  return function(action) {
+    (typeof before  === 'function') && before(action, dispatch, getState);
+    next(action);
+    (typeof after  === 'function') && after(action, dispatch, getState);
+  }
+}
+
 export default store => next => action => {
   // check if the action is related to api
   const apiMiddleware = action.apiMiddleware;
@@ -26,14 +34,19 @@ export default store => next => action => {
     return finalAction;
   }
 
-  next(actionWith({ type: requestType }));
+  const { dispatch, getState } = store;
+  const nextWithCallbacks = createNextWithCallbacks(next, store, apiMiddleware)
 
-  return caller(API, store.getState).then(
-    response => next(actionWith({
+  nextWithCallbacks(actionWith({
+    type: requestType
+  }))
+
+  return caller(API, getState).then(
+    response => nextWithCallbacks(actionWith({
       response,
       type: successType
     })),
-    error => next(actionWith({
+    error => nextWithCallbacks(actionWith({
       type: failureType,
       error: error.message || 'An unknown error occured'
     }))
