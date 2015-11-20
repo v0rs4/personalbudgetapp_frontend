@@ -1,5 +1,6 @@
 // Server api related functions
 import * as API from './utils/api';
+import * as Utils from './utils';
 // Hash history
 import { pushState } from 'redux-router';
 // Action Creators
@@ -36,6 +37,7 @@ export function signIn(username, password) {
       after: (action, dispatch, getState) => {
         if(action.type === 'AUTHENTICATE_SUCCESS') {
           const nextPath = getState().router.location.query.nextPath || '/'
+          Utils.saveToken(action.response.access_token);
           dispatch(pushState(null, nextPath))
         }
       }
