@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger'
 import reducer from '../reducers';
 import api from '../middlewares/api';
-import redirect from '../middlewares/redirect';
 import DevTools from '../containers/DevTools';
 import Immutable from 'immutable';
 import createHistory from 'history/lib/createHashHistory';
@@ -25,7 +24,7 @@ const logger = createLogger({
 });
 
 const finalCreateStore = compose(
-  applyMiddleware(thunk, api, redirect),
+  applyMiddleware(thunk, api),
   reduxReactRouter({ routes, createHistory }),
   applyMiddleware(logger),
   DevTools.instrument()
