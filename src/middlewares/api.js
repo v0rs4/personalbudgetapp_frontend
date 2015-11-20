@@ -5,7 +5,7 @@ function createNextWithCallbacks(next, { dispatch, getState }, { after, before }
     (typeof before  === 'function') && before(action, dispatch, getState);
     next(action);
     (typeof after  === 'function') && after(action, dispatch, getState);
-  }
+  };
 }
 
 export default store => next => action => {
@@ -26,7 +26,7 @@ export default store => next => action => {
     throw new Error('Expected caller to be function.');
   }
   // Actual middleware stuff
-  const [ requestType, successType, failureType ] = types
+  const [ requestType, successType, failureType ] = types;
 
   function actionWith(data) {
     const finalAction = Object.assign({}, action, data);
@@ -34,12 +34,12 @@ export default store => next => action => {
     return finalAction;
   }
 
-  const { dispatch, getState } = store;
-  const nextWithCallbacks = createNextWithCallbacks(next, store, apiMiddleware)
+  const { getState } = store;
+  const nextWithCallbacks = createNextWithCallbacks(next, store, apiMiddleware);
 
   nextWithCallbacks(actionWith({
     type: requestType
-  }))
+  }));
 
   return caller(API, getState).then(
     response => nextWithCallbacks(actionWith({
@@ -51,4 +51,4 @@ export default store => next => action => {
       error: error.message || 'An unknown error occured'
     }))
   );
-}
+};

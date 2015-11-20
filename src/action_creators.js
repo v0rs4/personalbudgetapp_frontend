@@ -1,5 +1,4 @@
 // Server api related functions
-import * as API from './utils/api';
 import * as Utils from './utils';
 // Hash history
 import { pushState } from 'redux-router';
@@ -32,13 +31,13 @@ export function signIn(username, password) {
     apiMiddleware: {
       types: ['AUTHENTICATE_REQUEST', 'AUTHENTICATE_SUCCESS', 'AUTHENTICATE_FAILURE'],
       caller: (api) => {
-        return api.authenticate(username, password)
+        return api.authenticate(username, password);
       },
       after: (action, dispatch, getState) => {
         if(action.type === 'AUTHENTICATE_SUCCESS') {
-          const nextPath = getState().router.location.query.nextPath || '/'
+          const nextPath = getState().router.location.query.nextPath || '/';
           Utils.saveToken(action.response.access_token);
-          dispatch(pushState(null, nextPath))
+          dispatch(pushState(null, nextPath));
         }
       }
     }
@@ -47,8 +46,8 @@ export function signIn(username, password) {
 export function checkUserSignedIn({ redirectUrl = '/' }) {
   return (dispatch, getState) => {
     const userSignedIn = getState().user.get('signedIn');
-    userSignedIn && dispatch(pushState(null, redirectUrl))
-  }
+    userSignedIn && dispatch(pushState(null, redirectUrl));
+  };
 }
 export function fetchBudgetDomains() {
   return {
@@ -59,7 +58,7 @@ export function fetchBudgetDomains() {
         return api.fetchBudgetDomains(accessToken);
       }
     }
-  }
+  };
 }
 export function authenticateUser() {
   return {
@@ -72,7 +71,7 @@ export function authenticateUser() {
       after: (action, dispatch, getState) => {
         if (action.type === 'TOKEN_INFO_FAILURE') {
           const currentPath = getState().router.location.pathname;
-          dispatch(pushState(null, '/sign_in', {nextPath: currentPath}))
+          dispatch(pushState(null, '/sign_in', {nextPath: currentPath}));
         }
       }
     }

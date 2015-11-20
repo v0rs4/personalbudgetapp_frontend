@@ -1,8 +1,7 @@
-// import es6Promise from 'es6-promise';
-// es6Promise.polyfill();
 import fetch from 'isomorphic-fetch';
 
-const {API_BASE_URL} = CONFIG
+/*global CONFIG*/
+const {API_BASE_URL} = CONFIG;
 
 function authHeader(accessToken) {
   return {

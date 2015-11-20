@@ -1,4 +1,4 @@
-import {Map, fromJS} from 'immutable';
+import {fromJS} from 'immutable';
 
 const INITIAL_STATE = fromJS({
   items: [],
@@ -15,12 +15,12 @@ function setBudgetDomains(state, budgetDomains) {
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
-    case 'BUDGET_DOMAINS_REQUEST':
-      return state.set('isFetching', true)
-    case 'BUDGET_DOMAINS_SUCCESS':
-      return setBudgetDomains(state, action.response.data);
-    case 'BUDGET_DOMAINS_FAILURE':
-      break;
+  case 'BUDGET_DOMAINS_REQUEST':
+    return state.set('isFetching', true);
+  case 'BUDGET_DOMAINS_SUCCESS':
+    return setBudgetDomains(state, action.response.data);
+  case 'BUDGET_DOMAINS_FAILURE':
+    break;
   }
   return state;
 }
