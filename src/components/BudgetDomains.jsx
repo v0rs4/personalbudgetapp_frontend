@@ -6,8 +6,15 @@ export default React.createClass({
   componentWillMount: function(){
     this.props.authenticateUser();
   },
-  componentDidMount: function() {
-    this.props.userSignedIn && this.props.fetchBudgetDomains();
+  componentDidUpdate: function(){
+    const {
+      userSignedIn,
+      fetched,
+      isFetching,
+      fetchBudgetDomains
+    } = this.props
+
+    if (userSignedIn && !(fetched || isFetching)) fetchBudgetDomains();
   },
   getBudgetDomains: function() {
     return this.props.budgetDomains || [];
