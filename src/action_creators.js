@@ -38,7 +38,6 @@ export function authenticate(username, password) {
   return {
     callAPI: {
       types: ['AUTHENTICATE_REQUEST', 'AUTHENTICATE_SUCCESS', 'AUTHENTICATE_FAILURE'],
-      endpoint: '/oauth/token',
       caller: (api) => {
         return api.authenticate(username, password)
       }
@@ -56,22 +55,14 @@ export function checkAuthenticated() {
     authenticated && hashHistory.push('/')
   }
 }
-export function retrieveToken(){
-  return dispatch => {
-    const accessToken = localStorage.getItem('accessToken');
-    dispatch(setAccessToken(accessToken));
-  }
-}
 export function fetchBudgetDomains() {
   return {
     callAPI: {
       types: ['BUDGET_DOMAINS_REQUEST', 'BUDGET_DOMAINS_SUCCESS','BUDGET_DOMAINS_FAILURE'],
-      endpoint: '/api/v1/budget_domains',
       caller: (api, getState) => {
         const { accessToken } = getState().user.toJS();
         return api.fetchBudgetDomains(accessToken);
-      },
-      authorization: true,
+      }
     }
   }
 }
@@ -79,7 +70,6 @@ export function authorizeAccessToken() {
   return {
     callAPI: {
       types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],
-      endpoint: '/oauth/token/info',
       caller: (api, getState) => {
         const { accessToken } = getState().user.toJS();
         return api.fetchTokenInfo(accessToken);

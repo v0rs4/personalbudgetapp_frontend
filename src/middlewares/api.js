@@ -7,10 +7,7 @@ export default store => next => action => {
     return next(action);
   }
   // Type checking
-  const { endpoint, types, caller } = callAPI;
-  if (typeof endpoint !== 'string') {
-    throw new Error('Specify a string endpoint URL.');
-  }
+  const { types, caller } = callAPI;
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected an array of three action types.');
   }
