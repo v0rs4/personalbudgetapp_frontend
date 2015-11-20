@@ -10,13 +10,6 @@ export function setState(state) {
     state
   };
 }
-export function fetchBudgetDomains(accessToken) {
-  return dispatch => {
-    API.fetchBudgetDomains(accessToken).then(body => {
-      dispatch(setBudgetDomains(body.data))
-    });
-  };
-}
 export function setBudgetDomains(budgetDomains) {
   return {
     type: 'SET_BUDGET_DOMAINS',

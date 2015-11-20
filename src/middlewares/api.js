@@ -26,7 +26,7 @@ export default store => next => action => {
     return finalAction;
   }
 
-  next(actionWith({ type: requestType }))
+  next(actionWith({ type: requestType }));
 
   return caller(API, store.getState).then(
     response => next(actionWith({
