@@ -4,13 +4,13 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 export default React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount: function() {
-    this.props.checkAuthenticated();
+    this.props.checkUserSignedIn({redirectUrl: '/'});
   },
   onSubmit: function(event) {
     event.preventDefault();
     let username = this.refs.username.value.trim();
     let password = this.refs.password.value.trim();
-    this.props.authenticate(username, password);
+    this.props.signIn(username, password);
   },
   render: function() {
     return <form onSubmit={this.onSubmit}>

@@ -26,7 +26,7 @@ export function setAuthenticated(){
     type: 'SET_AUTHENTICATED'
   };
 }
-export function authenticate(username, password) {
+export function signIn(username, password) {
   return {
     apiMiddleware: {
       types: ['AUTHENTICATE_REQUEST', 'AUTHENTICATE_SUCCESS', 'AUTHENTICATE_FAILURE'],
@@ -42,10 +42,10 @@ export function authenticate(username, password) {
     }
   };
 }
-export function checkAuthenticated() {
+export function checkUserSignedIn({ redirectUrl = '/' }) {
   return (dispatch, getState) => {
-    const { authenticated } = getState().user.toJS();
-    authenticated && hashHistory.push('/')
+    const userSignedIn = getState().user.get('signedIn');
+    userSignedIn && dispatch(pushState(null, redirectUrl))
   }
 }
 export function fetchBudgetDomains() {
@@ -59,7 +59,7 @@ export function fetchBudgetDomains() {
     }
   }
 }
-export function authorizeAccessToken() {
+export function authenticateUser() {
   return {
     apiMiddleware: {
       types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],

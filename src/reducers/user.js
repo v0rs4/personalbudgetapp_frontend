@@ -6,8 +6,7 @@ function setAccessToken(state, accessToken) {
 
 const INITIAL_STATE = fromJS({
   accessToken: undefined,
-  signedIn: false,
-  authenticated: false
+  signedIn: false
 });
 
 export default function(state = INITIAL_STATE, action) {
@@ -19,15 +18,15 @@ export default function(state = INITIAL_STATE, action) {
     case 'AUTHENTICATE_SUCCESS':
       return state
         .set('accessToken', action.response.access_token)
-        .set('authenticated', true);
+        .set('signedIn', true);
     case 'AUTHENTICATE_FAILURE':
-      break;
+      return state.set('signedIn', false);
     case 'TOKEN_INFO_REQUEST':
       break;
     case 'TOKEN_INFO_SUCCESS':
-      return state.set('authenticated', true);
+      return state.set('signedIn', true);
     case 'TOKEN_INFO_FAILURE':
-      break;
+      return state.set('signedIn', false);
   }
   return state;
 }

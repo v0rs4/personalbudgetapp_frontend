@@ -4,10 +4,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 export default React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount: function(){
-    this.props.authorizeAccessToken();
+    this.props.authenticateUser();
   },
   componentDidMount: function() {
-    this.props.fetchBudgetDomains();
+    this.props.userSignedIn && this.props.fetchBudgetDomains();
   },
   getBudgetDomains: function() {
     return this.props.budgetDomains || [];
@@ -15,7 +15,7 @@ export default React.createClass({
   can: function(entry, action) {
     return entry.getIn(['attributes', 'permissions', `can_${action}`]);
   },
-  render: function() {
+  renderTable: function(){
     return <table>
       <thead>
         <tr>
@@ -36,5 +36,8 @@ export default React.createClass({
         )}
       </tbody>
     </table>
+  },
+  render: function() {
+    return this.props.userSignedIn ? this.renderTable() : <p>spinner</p>;
   }
 });

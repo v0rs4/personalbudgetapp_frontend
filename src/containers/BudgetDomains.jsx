@@ -5,6 +5,7 @@ import * as actionCreators from '../action_creators';
 
 function mapStateToProps(state) {
   return {
+    userSignedIn: state.user.get('signedIn'),
     budgetDomains: state.budgetDomains.get('budgetDomains')
   };
 }
