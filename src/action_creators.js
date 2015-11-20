@@ -29,7 +29,7 @@ export function setAuthenticated(){
 }
 export function authenticate(username, password) {
   return {
-    callAPI: {
+    apiMiddleware: {
       types: ['AUTHENTICATE_REQUEST', 'AUTHENTICATE_SUCCESS', 'AUTHENTICATE_FAILURE'],
       caller: (api) => {
         return api.authenticate(username, password)
@@ -50,7 +50,7 @@ export function checkAuthenticated() {
 }
 export function fetchBudgetDomains() {
   return {
-    callAPI: {
+    apiMiddleware: {
       types: ['BUDGET_DOMAINS_REQUEST', 'BUDGET_DOMAINS_SUCCESS','BUDGET_DOMAINS_FAILURE'],
       caller: (api, getState) => {
         const { accessToken } = getState().user.toJS();
@@ -61,7 +61,7 @@ export function fetchBudgetDomains() {
 }
 export function authorizeAccessToken() {
   return {
-    callAPI: {
+    apiMiddleware: {
       types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],
       caller: (api, getState) => {
         const { accessToken } = getState().user.toJS();

@@ -2,12 +2,12 @@ import * as API from '../utils/api';
 
 export default store => next => action => {
   // check if the action is related to api
-  const callAPI = action.callAPI;
-  if (typeof callAPI == 'undefined') {
+  const apiMiddleware = action.apiMiddleware;
+  if (typeof apiMiddleware == 'undefined') {
     return next(action);
   }
   // Type checking
-  const { types, caller } = callAPI;
+  const { types, caller } = apiMiddleware;
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected an array of three action types.');
   }
@@ -22,7 +22,7 @@ export default store => next => action => {
 
   function actionWith(data) {
     const finalAction = Object.assign({}, action, data);
-    delete finalAction.callAPI;
+    delete finalAction.apiMiddleware;
     return finalAction;
   }
 
