@@ -1,12 +1,15 @@
-import React from 'react'
-import { Route } from 'react-router'
-import ApplicationLayout from './layouts/Application'
-import BudgetDomainsContainer from './containers/BudgetDomains';
-import SignInContainer from './containers/SignIn'
+import React from 'react';
+import { Route } from 'react-router';
+import Main from './layouts/Main';
+import Guardian from './layouts/Guardian';
+import BudgetDomains from './containers/BudgetDomains';
+import SignIn from './containers/SignIn'
 
 export default (
-  <Route component={ApplicationLayout}>
-    <Route path="/" component={BudgetDomainsContainer} />
-    <Route path="/sign_in" component={SignInContainer} />
+  <Route component={Main}>
+    <Route component={Guardian}>
+      <Route path="/" component={BudgetDomains} />
+    </Route>
+    <Route path="/sign_in" component={SignIn} />
   </Route>
 );

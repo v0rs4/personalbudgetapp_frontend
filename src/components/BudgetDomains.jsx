@@ -3,27 +3,22 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
-  componentWillMount: function(){
-    this.props.authenticateUser();
-  },
   componentDidMount: function(){
-    const { userSignedIn, fetchBudgetDomains } = this.props
-    userSignedIn && fetchBudgetDomains();
+    this.props.fetchBudgetDomains();
   },
   componentDidUpdate: function(){
     const {
-      userSignedIn,
       fetched,
       isFetching,
       fetchBudgetDomains
     } = this.props
 
-    if (userSignedIn && !(fetched || isFetching)) fetchBudgetDomains();
+    if (!(fetched || isFetching)) fetchBudgetDomains();
   },
   can: function(entry, action) {
     return entry.getIn(['attributes', 'permissions', `can_${action}`]);
   },
-  renderTable: function(){
+  render: function() {
     return <table>
       <thead>
         <tr>
@@ -43,9 +38,6 @@ export default React.createClass({
           </tr>
         )}
       </tbody>
-    </table>
-  },
-  render: function() {
-    return this.props.userSignedIn ? this.renderTable() : <p>spinner</p>;
+    </table>;
   }
 });
