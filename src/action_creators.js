@@ -70,8 +70,8 @@ export function authenticateUser() {
       },
       after: (action, dispatch, getState) => {
         if (action.type === 'TOKEN_INFO_FAILURE') {
-          const currentPath = getState().router.location.pathname;
-          dispatch(pushState(null, '/sign_in', {nextPath: currentPath}));
+          const nextPath = getState().router.location.pathname;
+          dispatch(pushState(null, '/sign_in', { nextPath }));
         }
       }
     }
