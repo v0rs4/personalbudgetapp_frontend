@@ -3,27 +3,10 @@ import * as Utils from './utils';
 // Hash history
 import { pushState } from 'redux-router';
 // Action Creators
-export function setState(state) {
-  return {
-    type: 'SET_STATE',
-    state
-  };
-}
-export function setBudgetDomains(budgetDomains) {
-  return {
-    type: 'SET_BUDGET_DOMAINS',
-    budgetDomains
-  };
-}
 export function setAccessToken(accessToken){
   return {
     type: 'SET_ACCESS_TOKEN',
     accessToken: accessToken
-  };
-}
-export function setAuthenticated(){
-  return {
-    type: 'SET_AUTHENTICATED'
   };
 }
 export function signIn(username, password) {
