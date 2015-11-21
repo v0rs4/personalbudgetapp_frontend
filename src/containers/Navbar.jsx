@@ -1,5 +1,6 @@
 // import React from 'react';
 import Navbar from '../components/Navbar';
+// Redux
 import { connect } from 'react-redux';
 import { signOut } from '../action_creators';
 

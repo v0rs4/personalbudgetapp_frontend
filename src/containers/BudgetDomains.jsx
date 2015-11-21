@@ -1,5 +1,8 @@
+// React
 import React from 'react';
+// Component
 import BudgetDomains from '../components/BudgetDomains';
+// Redux
 import {connect} from 'react-redux';
 import {
   authenticateUser,

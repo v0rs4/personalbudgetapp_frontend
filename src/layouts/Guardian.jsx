@@ -3,7 +3,6 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Redux
 import {connect} from 'react-redux';
-// Action creators
 import { authenticateUser } from '../action_creators';
 
 const Guardian = React.createClass({
@@ -16,7 +15,6 @@ const Guardian = React.createClass({
     return userSignedIn ? children : <p>Authenticating... (spinner)</p>;
   }
 });
-
 
 export default connect(
   state => (

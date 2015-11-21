@@ -1,6 +1,8 @@
+// React
 import React from 'react';
-import { Link } from 'react-router'
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+// React Router
+import { Link } from 'react-router';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
