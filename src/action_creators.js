@@ -26,6 +26,14 @@ export function signIn(username, password) {
     }
   };
 }
+export function signOut() {
+  return (dispatch) => {
+    Utils.removeToken();
+    dispatch({
+      type: 'SIGN_OUT'
+    });
+  };
+}
 export function checkUserSignedIn({ redirectUrl = '/' }) {
   return (dispatch, getState) => {
     const userSignedIn = getState().user.get('signedIn');

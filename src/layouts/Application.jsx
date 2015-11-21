@@ -5,11 +5,16 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 // Action creators
 import * as actionCreators from '../action_creators';
+// Containers
+import Navbar from '../containers/Navbar';
 
 const ApplicationLayout = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
-    return this.props.children
+    return <div>
+      <Navbar />
+      {this.props.children}
+    </div>
   }
 });
 

@@ -19,14 +19,16 @@ export default function(state = INITIAL_STATE, action) {
     return state
       .set('accessToken', action.response.access_token)
       .set('signedIn', true);
-  case 'AUTHENTICATE_FAILURE':
-    return state.set('signedIn', false);
   case 'TOKEN_INFO_REQUEST':
     break;
   case 'TOKEN_INFO_SUCCESS':
     return state.set('signedIn', true);
+  case 'AUTHENTICATE_FAILURE':
   case 'TOKEN_INFO_FAILURE':
-    return state.set('signedIn', false);
+  case 'SIGN_OUT':
+    return state
+      .set('accessToken', undefined)
+      .set('signedIn', false);
   }
   return state;
 }
