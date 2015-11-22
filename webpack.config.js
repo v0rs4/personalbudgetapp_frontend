@@ -10,7 +10,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'react-hot!babel' },
-      { test: /\.js$/,   exclude: /node_modules/, loader: "eslint-loader"   }
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"   }
     ]
   },
   resolve: {

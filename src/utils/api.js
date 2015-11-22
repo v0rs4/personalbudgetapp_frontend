@@ -43,6 +43,65 @@ export function fetchBudgetDomains(accessToken) {
   .then(parseJSON);
 }
 
+
+export function fetchBudgetCategories(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/categories`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+
+export function fetchBudgetExpenses(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/expenses`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+export function fetchBudgetIncomes(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/incomes`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+export function fetchBudgetDebts(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/debts`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+export function fetchBudgetPlans(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/plans`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+export function fetchBudgetAccounts(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/accounts`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+export function fetchBudgetMembers(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/members`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
+
 export function authenticate(username, password) {
   return fetch(`${API_BASE_URL}/oauth/token`, {
     method: 'post',

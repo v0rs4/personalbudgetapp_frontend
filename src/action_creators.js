@@ -51,6 +51,17 @@ export function fetchBudgetDomains() {
     }
   };
 }
+export function fetchBudgetCategories(budgetDomainId) {
+  return {
+    apiMiddleware: {
+      types: ['BUDGET_CATEGORIES_REQUEST', 'BUDGET_CATEGORIES_SUCCESS','BUDGET_CATEGORIES_FAILURE'],
+      caller: (api, getState) => {
+        const { accessToken } = getState().user.toJS();
+        return api.fetchBudgetCategories(accessToken, budgetDomainId);
+      }
+    }
+  };
+}
 export function authenticateUser() {
   return {
     apiMiddleware: {
