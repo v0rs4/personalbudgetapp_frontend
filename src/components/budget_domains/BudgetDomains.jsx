@@ -2,7 +2,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Component
-import BudgetDomainsTable from '../components/BudgetDomainsTable'
+import Table from './table/Table'
 
 export default React.createClass({
   mixins: [PureRenderMixin],
@@ -22,6 +22,6 @@ export default React.createClass({
     return entry.getIn(['attributes', 'permissions', `can_${action}`]);
   },
   render: function() {
-    return <BudgetDomainsTable items={this.props.budgetDomains}/>;
+    return <Table items={this.props.budgetDomains}/>;
   }
 });

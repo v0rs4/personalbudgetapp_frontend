@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from 'react-router';
 // Layouts
 import Main from './layouts/Main';
-import Guardian from './layouts/Guardian';
+import Guardian from './misc/Guardian';
 // Component/Redux Containers
 import BudgetDomains from './containers/BudgetDomains';
 import SignIn from './containers/SignIn'

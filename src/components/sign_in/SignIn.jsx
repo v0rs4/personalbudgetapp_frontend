@@ -2,13 +2,13 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Component
-import SignInForm from '../components/SignInForm'
+import Form from './form/Form'
 
 export default React.createClass({
   componentWillMount: function() {
     this.props.checkUserSignedIn({redirectUrl: '/'});
   },
   render: function() {
-    return <SignInForm signIn={this.props.signIn} />;
+    return <Form signIn={this.props.signIn} />;
   }
 })
