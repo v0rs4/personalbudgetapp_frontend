@@ -8,6 +8,7 @@ import DevTools from '../containers/DevTools';
 import Immutable from 'immutable';
 import createHistory from 'history/lib/createHashHistory';
 import routes from '../routes';
+import * as API from '../utils/api';
 
 const logger = createLogger({
   transformer: (state) => {
@@ -24,7 +25,7 @@ const logger = createLogger({
 });
 
 const finalCreateStore = compose(
-  applyMiddleware(thunk, api),
+  applyMiddleware(thunk, api(API)),
   reduxReactRouter({ routes, createHistory }),
   applyMiddleware(logger),
   DevTools.instrument()

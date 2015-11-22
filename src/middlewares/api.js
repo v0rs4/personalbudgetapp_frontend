@@ -1,5 +1,3 @@
-import * as API from '../utils/api';
-
 function createNextWithCallbacks(next, { dispatch, getState }, { after, before }){
   return function(action) {
     (typeof before  === 'function') && before(action, dispatch, getState);
@@ -8,7 +6,7 @@ function createNextWithCallbacks(next, { dispatch, getState }, { after, before }
   };
 }
 
-export default store => next => action => {
+export default API => store => next => action => {
   // check if the action is related to api
   const apiMiddleware = action.apiMiddleware;
   if (typeof apiMiddleware == 'undefined') {
