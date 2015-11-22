@@ -4,9 +4,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
-  componentWillMount: function() {
-    this.props.checkUserSignedIn({redirectUrl: '/'});
-  },
   onSubmit: function(event) {
     event.preventDefault();
     let username = this.refs.username.value.trim();

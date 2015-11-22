@@ -1,15 +1,11 @@
 // Component
-import SignIn from '../components/SignIn';
+import SignIn from '../views/SignIn';
 // Redux
 import {connect} from 'react-redux';
 // Actions
-import * as actionCreators from '../action_creators';
-
-function mapStateToProps(state) {
-  return {};
-}
+import { signIn, checkUserSignedIn } from '../action_creators';
 
 export default connect(
-  mapStateToProps,
-  actionCreators
+  state => ({}),
+  { signIn, checkUserSignedIn }
 )(SignIn);
