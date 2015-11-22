@@ -1,5 +1,5 @@
 // View
-import BudgetDomains from '../components/budget_domains/BudgetDomains';
+import BudgetDomains from '../components/BudgetDomains/BudgetDomains';
 // Redux
 import {connect} from 'react-redux';
 import {

@@ -2,7 +2,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Component
-import Table from './table/Table'
+import Table from './Table/Table'
 
 export default React.createClass({
   mixins: [PureRenderMixin],

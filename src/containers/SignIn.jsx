@@ -1,5 +1,5 @@
 // Component
-import SignIn from '../components/sign_in/SignIn';
+import SignIn from '../components/SignIn/SignIn';
 // Redux
 import {connect} from 'react-redux';
 // Actions
