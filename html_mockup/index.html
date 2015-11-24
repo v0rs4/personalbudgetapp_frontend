@@ -47,145 +47,54 @@
     </div>
     <div class="wrapper wrapper-content">
       <div class="container">
-      <div class="row">
-        <!-- <div class="col-md-4">
-          <div class="ibox float-e-margins">
-            <div class="ibox-title">
-              <span class="label label-info pull-right">UAH</span>
-              <span class="label label-success pull-right">Monthly</span>
-              <h5>
-                Expenses
-                <span class="text-navy">/</span>
-                Incomes
-              </h5>
-            </div>
-            <div class="ibox-content">
-              <div class="row">
-                <div class="col-md-6">
-                  <h1 class="no-margins">24,565</h1>
-                  <div class="font-bold text-info">54% <i class="fa fa-bolt"></i> <small>Total income</small></div>
-                </div>
-                <div class="col-md-6">
-                  <h1 class="no-margins">57,000</h1>
-                  <div class="font-bold text-navy">20% <i class="fa fa-level-up"></i> <small>Last month</small></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <div class="col-md-3">
-          <div class="ibox float-e-margins">
-            <div class="ibox-title">
-              <span class="label label-success pull-right">This month</span>
-              <h5>Expenses</h5>
-            </div>
-            <div class="ibox-content">
-                  <h1 class="no-margins">21,129 UAH</h1>
-                  <div class="stat-percent font-bold text-danger">20% <i class="fa fa-level-down"></i></div>
-                  <small>Last month</small>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="ibox float-e-margins">
-            <div class="ibox-title">
-              <span class="label label-success pull-right">Today</span>
-              <h5>Expenses</h5>
-            </div>
-            <div class="ibox-content">
-                  <h1 class="no-margins">1,243 UAH</h1>
-                  <div class="stat-percent font-bold text-navy">20% <i class="fa fa-level-up"></i></div>
-                  <small>Yesterday</small>
-            </div>
-          </div>
-        </div>
-
-        <!-- <div class="col-md-4">
-          <div class="ibox float-e-margins">
-            <div class="ibox-title">
-              <span class="label label-info pull-right">UAH</span>
-              <span class="label label-primary pull-right">Today</span>
-              <h5>
-                Expenses
-                <span class="text-navy">/</span>
-                Incomes
-              </h5>
-            </div>
-            <div class="ibox-content">
-              <div class="row">
-                <div class="col-md-6">
-                  <h1 class="no-margins">1,420</h1>
-                  <div class="font-bold text-danger">20% <i class="fa fa-level-up"></i> <small>Yesterday</small></div>
-                </div>
-                <div class="col-md-6">
-                  <h1 class="no-margins">0</h1>
-                  <div class="font-bold text-navy">0% <small>Yesterday</small></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <div class="col-md-6">
-          <div class="ibox float-e-margins" style="display: none;">
-            <div class="ibox-title">
-              <h5>Monthly expenses</h5>
-              <div class="ibox-tools">
-                <span class="label label-primary">Updated 12.2015</span>
-              </div>
-            </div>
-            <div class="ibox-content no-padding">
-              <div class="flot-chart m-t-lg" style="height: 55px;">
-                <div class="flot-chart-content" id="flot-chart1"></div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-md-3 col-lg-2">
             <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="label label-success pull-right">Month</span>
+                <h5>Expenses</h5>
+              </div>
               <div class="ibox-content">
-                <div>
-                    <span class="pull-right text-right">
-                    <small>Average value of sales in the past month in: <strong>United states</strong></small>
-                      <br/>
-                      All sales: 162,862
-                    </span>
-                  <h3 class="font-bold no-margins">
-                    Half-year revenue margin
-                  </h3>
-                  <small>Sales marketing.</small>
+                    <h1 class="no-margins">21,129 <span style="font-size: 0.4em;">UAH</span></h1>
+                    <div class="stat-percent font-bold text-danger">20% <i class="fa fa-level-down"></i></div>
+                    <small>Last month</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-2">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="label label-success pull-right">Today</span>
+                <h5>Expenses</h5>
+              </div>
+              <div class="ibox-content">
+                    <h1 class="no-margins">1,243 <span style="font-size: 0.4em;">UAH</span></h1>
+                    <div class="stat-percent font-bold text-navy">20% <i class="fa fa-level-up"></i></div>
+                    <small>Yesterday</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <h5 class="font-bold no-margins">
+                  Half-year income / expenses
+                </h5>
+                <div class="ibox-tools">
+                  <a href="#"><i class="fa fa-bolt"></i> Sources</a>
                 </div>
-
+              </div>
+              <div class="ibox-content">
                 <div class="m-t-sm">
-
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                       <div>
-                      <canvas id="lineChart" height="114"></canvas>
+                        <canvas id="lineChart" height="114"></canvas>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <ul class="stat-list m-t-lg">
-                        <li>
-                          <h2 class="no-margins">2,346</h2>
-                          <small>Total orders in period</small>
-                          <div class="progress progress-mini">
-                            <div class="progress-bar" style="width: 48%;"></div>
-                          </div>
-                        </li>
-                        <li>
-                          <h2 class="no-margins ">4,422</h2>
-                          <small>Orders in last month</small>
-                          <div class="progress progress-mini">
-                            <div class="progress-bar" style="width: 60%;"></div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
                   </div>
-
                 </div>
 
                 <div class="m-t-md">
@@ -193,72 +102,14 @@
                     <i class="fa fa-clock-o"> </i>
                     Update on 16.07.2015
                   </small>
-                  <small>
-                    <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
-                  </small>
+                  <small style="color: rgb(160,160,160);"><i class="fa fa-area-chart"></i> - income</small> <br>
+                  <small style="color: rgb(26,179,148);"><i class="fa fa-area-chart"></i> - expenses</small>
                 </div>
 
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="ibox float-e-margins">
-              <div class="ibox-title">
-                <span class="label label-warning pull-right">Data has changed</span>
-                <h5>User activity</h5>
-              </div>
-              <div class="ibox-content">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <small class="stats-label">Pages / Visit</small>
-                    <h4>236 321.80</h4>
-                  </div>
-
-                  <div class="col-xs-4">
-                    <small class="stats-label">% New Visits</small>
-                    <h4>46.11%</h4>
-                  </div>
-                  <div class="col-xs-4">
-                    <small class="stats-label">Last week</small>
-                    <h4>432.021</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="ibox-content">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <small class="stats-label">Pages / Visit</small>
-                    <h4>643 321.10</h4>
-                  </div>
-
-                  <div class="col-xs-4">
-                    <small class="stats-label">% New Visits</small>
-                    <h4>92.43%</h4>
-                  </div>
-                  <div class="col-xs-4">
-                    <small class="stats-label">Last week</small>
-                    <h4>564.554</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="ibox-content">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <small class="stats-label">Pages / Visit</small>
-                    <h4>436 547.20</h4>
-                  </div>
-
-                  <div class="col-xs-4">
-                    <small class="stats-label">% New Visits</small>
-                    <h4>150.23%</h4>
-                  </div>
-                  <div class="col-xs-4">
-                    <small class="stats-label">Last week</small>
-                    <h4>124.990</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-lg-6">
           </div>
         </div>
 
@@ -291,9 +142,10 @@
                 <div class="row">
                   <div class="col-sm-9 m-b-xs">
                     <div data-toggle="buttons" class="btn-group">
-                      <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                      <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                      <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
+                      <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Today </label>
+                      <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> This week </label>
+                      <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> This month </label>
+                      <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Last 3 months </label>
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -669,45 +521,6 @@
 
   <script>
     $(document).ready(function() {
-
-
-      var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
-      var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
-
-      var data1 = [
-        { label: "Data 1", data: d1, color: '#17a084'},
-        { label: "Data 2", data: d2, color: '#127e68' }
-      ];
-      $.plot($("#flot-chart1"), data1, {
-        xaxis: {
-          tickDecimals: 0
-        },
-        series: {
-          lines: {
-            show: true,
-            fill: true,
-            fillColor: {
-              colors: [{
-                opacity: 1
-              }, {
-                opacity: 1
-              }]
-            },
-          },
-          points: {
-            width: 0.1,
-            show: false
-          },
-        },
-        grid: {
-          show: false,
-          borderWidth: 0
-        },
-        legend: {
-          show: false,
-        }
-      });
-
       var lineData = {
         labels: ["May", "June", "July", "August", "September", "October", "November"],
         datasets: [
