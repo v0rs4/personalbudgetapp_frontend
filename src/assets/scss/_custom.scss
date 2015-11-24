@@ -12,3 +12,22 @@
 .lightBoxGallery img {
   margin: 5px;
 }
+
+.slim-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slim-slider_slides {
+  position: relative;
+  padding: 0;
+  list-style: none;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.slim-slider_slide {
+  display: inline-block;
+  -webkit-backface-visibility: hidden;
+}
