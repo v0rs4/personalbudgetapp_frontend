@@ -2,15 +2,15 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Component
-import Table from './BudgetCategories/Table'
+import Table from './BudgetCategories/Table';
 
 export default React.createClass({
-  // mixins: [PureRenderMixin],
+  mixins: [PureRenderMixin],
   fetch: function() {
     const {
       fetchBudgetCategories,
       budgetDomainId
-    } = this.props
+    } = this.props;
 
     fetchBudgetCategories(budgetDomainId);
   },

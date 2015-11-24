@@ -6,6 +6,6 @@ import {connect} from 'react-redux';
 import { signIn, checkUserSignedIn } from '../action_creators';
 
 export default connect(
-  state => ({}),
+  () => ({}),
   { signIn, checkUserSignedIn }
 )(SignIn);

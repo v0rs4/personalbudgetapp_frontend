@@ -1,15 +1,15 @@
+/*eslint-disable */
 // React
 import React from 'react';
+/*eslint-enable */
 import {render} from 'react-dom';
-import Router, {Route} from 'react-router';
 // Redux
-import {Provider} from 'react-redux';
 import {setAccessToken} from './action_creators';
-import configureStore from './store/configureStore'
+import configureStore from './store/configureStore';
 // <Root />
 import Root from './containers/Root';
 // Utils
-import {retrieveToken} from './utils'
+import {retrieveToken} from './utils';
 // Create store
 const store = configureStore();
 // Init accessToken
@@ -19,4 +19,4 @@ store.dispatch(setAccessToken(retrieveToken()));
 render(
   <Root store={store} />,
   document.getElementById('app')
-)
+);

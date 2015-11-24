@@ -11,7 +11,7 @@ const Guardian = React.createClass({
     this.props.authenticateUser();
   },
   render: function() {
-    const { userSignedIn, children } = this.props
+    const { userSignedIn, children } = this.props;
     return userSignedIn ? children : <p>Authenticating... (spinner)</p>;
   }
 });
@@ -21,4 +21,4 @@ export default connect(
     { userSignedIn: state.user.get('signedIn') }
   ),
   { authenticateUser }
-)(Guardian)
+)(Guardian);

@@ -1,13 +1,13 @@
 // React
 import React from 'react';
 // Redux
-import { Provider } from 'react-redux'
-import { ReduxRouter } from 'redux-router'
-import DevTools from './DevTools'
+import { Provider } from 'react-redux';
+import { ReduxRouter } from 'redux-router';
+import DevTools from './DevTools';
 
 export default React.createClass({
   render: function() {
-    const { store } = this.props
+    const { store } = this.props;
     return (
       <Provider store={store}>
         <div>
@@ -15,6 +15,6 @@ export default React.createClass({
           <DevTools />
         </div>
       </Provider>
-    )
+    );
   }
 });
