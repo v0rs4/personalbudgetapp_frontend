@@ -11,7 +11,7 @@ module.exports = {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'react-hot!babel' },
       { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"   },
-      { test: /\.scss$/, exclude: /node_modules/, loader: 'style!css!sass'  }
+      { test: /\.scss$/, loader: 'style!css!sass'  }
     ]
   },
   resolve: {
