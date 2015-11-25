@@ -5,17 +5,18 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './src/index.jsx'
+    './app/index.js'
+    // './src/index.jsx'
   ],
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'react-hot!babel' },
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"   },
-      { test: /\.scss$/, loader: 'style!css!sass'  }
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"   }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['node_modules', 'app']
   },
   output: {
     path: __dirname + '/dist',
@@ -32,4 +33,5 @@ module.exports = {
         CONFIG: require(path.join(__dirname, 'config/environments/development.json'))
     })
   ]
+  // modulesDirectories: ['node_modules', 'app']
 };
