@@ -2,7 +2,7 @@
 /*eslint-disable */
 import React from 'react';
 /*eslint-enable */
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 // Layouts
 import Main from './layouts/Main';
 import Application from './layouts/Application';
@@ -16,10 +16,10 @@ import SignIn from './containers/SignIn';
 export default (
   <Route component={Main}>
     <Route component={Guardian}>
-      <Route component={Application}>
-        <Route path="/" component={Dashboard} />
-        <Route path="/budget_domains" component={BudgetDomains} />
-        <Route path="/budget_domains/:budgetDomainId/categories" component={BudgetCategories} />
+      <Route path='/' component={Application}>
+        <IndexRoute component={Dashboard} />
+        <Route path="budget_domains" component={BudgetDomains} />
+        <Route path="budget_domains/:budgetDomainId/categories" component={BudgetCategories} />
       </Route>
     </Route>
     <Route path="/sign_in" component={SignIn} />
