@@ -5,8 +5,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './app/index.js'
-    // './src/index.jsx'
+    './src/index.jsx'
   ],
   module: {
     loaders: [
@@ -15,8 +14,8 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'app']
+    extensions: ['', '.js', '.jsx']
+    // modulesDirectories: ['node_modules', 'app']
   },
   output: {
     path: __dirname + '/dist',
@@ -33,5 +32,4 @@ module.exports = {
         CONFIG: require(path.join(__dirname, 'config/environments/development.json'))
     })
   ]
-  // modulesDirectories: ['node_modules', 'app']
 };
