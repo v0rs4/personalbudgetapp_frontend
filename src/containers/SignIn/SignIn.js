@@ -1,10 +1,14 @@
 // React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+// Redux
+import {connect} from 'react-redux';
+// Actions
+import { signIn, checkUserSignedIn } from '../../action_creators';
 // Component
-import Form from './SignIn/Form';
+import Form from './Form';
 
-export default React.createClass({
+const SignIn =  React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount: function() {
     this.props.checkUserSignedIn({redirectUrl: '/'});
@@ -24,3 +28,8 @@ export default React.createClass({
     </div>;
   }
 });
+
+export default connect(
+  () => ({}),
+  { signIn, checkUserSignedIn }
+)(SignIn);

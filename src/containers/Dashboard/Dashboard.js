@@ -1,10 +1,10 @@
 // React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import {connect} from 'react-redux';
+import Stat from './Stat';
 
-import Stat from './Dashboard/Stat';
-
-export default React.createClass({
+const Dashboard =  React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <div className="row">
@@ -17,3 +17,8 @@ export default React.createClass({
     </div>;
   }
 });
+
+export default connect(
+  () => ({}),
+  {}
+)(Dashboard);

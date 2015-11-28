@@ -7,7 +7,7 @@ import {render} from 'react-dom';
 import {setAccessToken} from './action_creators';
 import configureStore from './store/configureStore';
 // <Root />
-import Root from './containers/Root';
+import {Root} from './containers';
 // Utils
 import {retrieveToken} from './utils';
 // Create store

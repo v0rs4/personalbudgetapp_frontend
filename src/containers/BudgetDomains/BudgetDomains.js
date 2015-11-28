@@ -1,11 +1,25 @@
-// View
-import BudgetDomains from '../components/BudgetDomains';
+
+// React
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Redux
 import {connect} from 'react-redux';
 import {
   authenticateUser,
   fetchBudgetDomains
-} from '../action_creators';
+} from '../../action_creators';
+// Component
+import Table from './Table';
+
+const BudgetDomains =  React.createClass({
+  mixins: [PureRenderMixin],
+  componentDidMount: function(){
+    this.props.fetchBudgetDomains();
+  },
+  render: function() {
+    return <Table items={this.props.budgetDomains}/>;
+  }
+});
 
 function mapStateToProps(state) {
   return {

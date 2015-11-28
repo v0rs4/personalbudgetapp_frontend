@@ -3,15 +3,16 @@
 import React from 'react';
 /*eslint-enable */
 import { Route, IndexRoute } from 'react-router';
-// Layouts
 import Main from './layouts/Main';
 import Application from './layouts/Application';
 import Guardian from './misc/Guardian';
-// Component/Redux Containers
-import Dashboard from './components/Dashboard';
-import BudgetDomains from './containers/BudgetDomains';
-import BudgetCategories from './containers/BudgetCategories';
-import SignIn from './containers/SignIn';
+
+import {
+  Dashboard,
+  BudgetDomains,
+  BudgetCategories,
+  SignIn
+} from './containers';
 
 export default (
   <Route component={Main}>
