@@ -9,15 +9,8 @@ import path from 'path';
 const webpackConfig = require('../webpack.dev.config');
 const webpackCompiler = webpack(webpackConfig);
 const webpackServerOptions = {
-  // contentBase: 'http://localhost:3002',
-  // quiet: true,
-  // noInfo: true,
   hot: true,
-  // inline: true,
-  // lazy: false,
   publicPath: webpackConfig.output.publicPath
-  // headers: {'Access-Control-Allow-Origin': '*'},
-  // stats: {colors: true}
 }
 const app = new Express();
 
@@ -34,34 +27,3 @@ app.use((req, res) => {
 app.listen(3001, 'localhost', (err) => {
   console.info('==> Open http://localhost:3001 in a browser to view the app.');
 });
-
-// const webpackServer = new Express();
-// const webpackConfig = require('../webpack.dev.config');
-// const webpackCompiler = webpack(webpackConfig);
-// const webpackServerOptions = {
-//   // publicPath: config.output.publicPath,
-//   // hot: true,
-//   // stats: {
-//   //   color: true
-//   // }
-//   contentBase: 'http://localhost:3002',
-//   quiet: true,
-//   noInfo: true,
-//   hot: true,
-//   inline: true,
-//   lazy: false,
-//   publicPath: 'http://localhost:3001',
-//   headers: {'Access-Control-Allow-Origin': '*'},
-//   stats: {colors: true}
-// }
-//
-// webpackServer.use(webpackDevMiddleware(webpackCompiler, webpackServerOptions));
-// webpackServer.use(webpackHotMiddleware(webpackCompiler));
-//
-// webpackServer.listen(3002, 'localhost', (err) => {
-//   if (err) {
-//     console.error(err);
-//   } else {
-//     console.info('==> Webpack development server listening on port 3002');
-//   }
-// });
