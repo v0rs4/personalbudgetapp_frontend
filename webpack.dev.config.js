@@ -2,11 +2,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './src/client.js'
-  ],
+  entry: {
+    bundle: [
+      'webpack-hot-middleware/client',
+      './src/client.dev.js'
+    ]
+  },
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'react-hot!babel' },
@@ -20,11 +21,9 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true
+    filename: '[name].js'
+    // filename: '[name].[hash].js',
+    // chunkFilename: '[name]-[chunkhash].js'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

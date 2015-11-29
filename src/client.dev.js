@@ -14,7 +14,6 @@ import {retrieveToken} from './utils';
 const store = configureStore();
 // Init accessToken
 store.dispatch(setAccessToken(retrieveToken()));
-// store.dispatch(retrieveToken());
 // Render <Root />
 render(
   <Root store={store} />,

@@ -27,4 +27,7 @@
       "moduleDirectory": ["node_modules", "app"]
     }
   },
+  "globals": {
+    "CONFIG": true
+  }
 }
