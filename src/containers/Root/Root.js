@@ -1,6 +1,4 @@
-// React
 import React from 'react';
-// Redux
 import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
 

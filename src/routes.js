@@ -1,10 +1,7 @@
-// React
 /*eslint-disable */
 import React from 'react';
 /*eslint-enable */
 import { Route, IndexRoute } from 'react-router';
-// import Main from './layouts/Main';
-// import Application from './layouts/Application';
 import Guardian from './misc/Guardian';
 
 import {

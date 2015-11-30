@@ -3,7 +3,7 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // Redux
 import {connect} from 'react-redux';
-import { authenticateUser } from '../action_creators';
+import { authenticateUser } from '../redux/bundles/auth';
 
 const Guardian = React.createClass({
   mixins: [PureRenderMixin],
@@ -17,8 +17,6 @@ const Guardian = React.createClass({
 });
 
 export default connect(
-  state => (
-    { userSignedIn: state.user.get('signedIn') }
-  ),
+  state => ({ userSignedIn: state.auth.loggedIn }),
   { authenticateUser }
 )(Guardian);

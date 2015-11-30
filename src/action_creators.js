@@ -36,7 +36,7 @@ export function signOut() {
 }
 export function checkUserSignedIn({ redirectUrl = '/' }) {
   return (dispatch, getState) => {
-    const userSignedIn = getState().user.get('signedIn');
+    const userSignedIn = getState().auth.loggedIn;
     userSignedIn && dispatch(pushState(null, redirectUrl));
   };
 }
@@ -45,7 +45,7 @@ export function fetchBudgetDomains() {
     apiMiddleware: {
       types: ['BUDGET_DOMAINS_REQUEST', 'BUDGET_DOMAINS_SUCCESS','BUDGET_DOMAINS_FAILURE'],
       caller: (api, getState) => {
-        const { accessToken } = getState().user.toJS();
+        const { accessToken } = getState().auth;
         return api.fetchBudgetDomains(accessToken);
       }
     }
@@ -56,7 +56,7 @@ export function fetchBudgetCategories(budgetDomainId) {
     apiMiddleware: {
       types: ['BUDGET_CATEGORIES_REQUEST', 'BUDGET_CATEGORIES_SUCCESS','BUDGET_CATEGORIES_FAILURE'],
       caller: (api, getState) => {
-        const { accessToken } = getState().user.toJS();
+        const { accessToken } = getState().auth;
         return api.fetchBudgetCategories(accessToken, budgetDomainId);
       }
     }
@@ -67,7 +67,7 @@ export function authenticateUser() {
     apiMiddleware: {
       types: ['TOKEN_INFO_REQUEST', 'TOKEN_INFO_SUCCESS','TOKEN_INFO_FAILURE'],
       caller: (api, getState) => {
-        const { accessToken } = getState().user.toJS();
+        const { accessToken } = getState().auth;
         return api.fetchTokenInfo(accessToken);
       },
       after: (action, dispatch, getState) => {
