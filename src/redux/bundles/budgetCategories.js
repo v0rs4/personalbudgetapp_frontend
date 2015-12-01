@@ -1,8 +1,8 @@
 import merge from 'lodash.merge';
 
-const FETCH_REQUEST = 'budgetCategories/fetch_request';
-const FETCH_SUCCESS = 'budgetCategories/fetch_success';
-const FETCH_FAILURE = 'budgetCategories/fetch_failure';
+const FETCH_REQUEST = 'budgetCategories/fetchRequest';
+const FETCH_SUCCESS = 'budgetCategories/fetchSuccess';
+const FETCH_FAILURE = 'budgetCategories/fetchFailure';
 
 const INITIAL_STATE = {
   isFetching: false,

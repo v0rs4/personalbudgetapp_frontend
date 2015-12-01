@@ -2,16 +2,16 @@ import merge from 'lodash.merge';
 import * as utils from 'utils';
 import { pushState } from 'redux-router';
 
-const SET_ACCESS_TOKEN = 'auth/set_access_token';
-const SIGN_IN_REQUEST = 'auth/sign_in_request';
-const SIGN_IN_SUCCESS = 'auth/sign_in_success';
-const SIGN_IN_FAILURE = 'auth/sign_in_failure';
-const SIGN_OUT_REQUEST = 'auth/sign_out_request';
-const SIGN_OUT_SUCCESS = 'auth/sign_out_success';
-const SIGN_OUT_FAILURE = 'auth/sign_out_failure';
-const TOKEN_INFO_REQUEST = 'auth/token_info_request';
-const TOKEN_INFO_SUCCESS = 'auth/token_info_success';
-const TOKEN_INFO_FAILURE = 'auth/token_info_failure';
+const SET_ACCESS_TOKEN = 'auth/setAccessToken';
+const SIGN_IN_REQUEST = 'auth/signInRequest';
+const SIGN_IN_SUCCESS = 'auth/signInSuccess';
+const SIGN_IN_FAILURE = 'auth/signInFailure';
+const SIGN_OUT_REQUEST = 'auth/signOutRequest';
+const SIGN_OUT_SUCCESS = 'auth/signOutSuccess';
+const SIGN_OUT_FAILURE = 'auth/signOutFailure';
+const TOKEN_INFO_REQUEST = 'auth/tokenInfoRequest';
+const TOKEN_INFO_SUCCESS = 'auth/tokenInfoSuccess';
+const TOKEN_INFO_FAILURE = 'auth/tokenInfoFailure';
 
 const INITIAL_STATE = {
   accessToken: null,
