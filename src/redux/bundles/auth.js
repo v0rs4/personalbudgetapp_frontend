@@ -1,24 +1,24 @@
 import merge from 'lodash.merge';
 import * as utils from 'utils';
+import { pushState } from 'redux-router';
 
 const SET_ACCESS_TOKEN = 'auth/set_access_token';
-const LOGIN_REQUEST = 'auth/login_request';
-const LOGIN_SUCCESS = 'auth/login_success';
-const LOGIN_FAILURE = 'auth/login_failure';
-const LOGOUT_REQUEST = 'auth/logout_request';
-const LOGOUT_SUCCESS = 'auth/logout_success';
-const LOGOUT_FAILURE = 'auth/logout_failure';
+const SIGN_IN_REQUEST = 'auth/sign_in_request';
+const SIGN_IN_SUCCESS = 'auth/sign_in_success';
+const SIGN_IN_FAILURE = 'auth/sign_in_failure';
+const SIGN_OUT_REQUEST = 'auth/sign_out_request';
+const SIGN_OUT_SUCCESS = 'auth/sign_out_success';
+const SIGN_OUT_FAILURE = 'auth/sign_out_failure';
 const TOKEN_INFO_REQUEST = 'auth/token_info_request';
 const TOKEN_INFO_SUCCESS = 'auth/token_info_success';
 const TOKEN_INFO_FAILURE = 'auth/token_info_failure';
 
 const INITIAL_STATE = {
-  accessToken: undefined,
-  user: undefined,
-  loggingIn: false,
-  loggedIn: false,
-  loggingOut: false,
-  loggedOut: false
+  accessToken: null,
+  isSigningIn: false,
+  isSignedIn: false,
+  isSigningOut: false,
+  isSignedOut: false
 };
 
 export default function(state = INITIAL_STATE, action){
@@ -27,70 +27,77 @@ export default function(state = INITIAL_STATE, action){
     return merge({}, state, {
       accessToken: action.accessToken
     });
-  case LOGIN_REQUEST:
+  case SIGN_IN_REQUEST:
     return merge({}, state, {
-      loggingIn: true
+      isSigningIn: true
     });
-  case LOGIN_SUCCESS:
+  case SIGN_IN_SUCCESS:
     return merge({}, state, {
-      loggingIn: false,
-      loggedIn: true,
-      accessToken: action.response.accessToken,
-      user: action.user
+      isSigningIn: false,
+      isSignedIn: true,
+      accessToken: action.response.access_token
     });
-  case LOGIN_FAILURE:
+  case SIGN_IN_FAILURE:
     return merge({}, state, {
-      loggingIn: false
+      isSigningIn: false
     });
-  case LOGOUT_REQUEST:
+  case SIGN_OUT_REQUEST:
     return merge({}, state, {
-      loggingOut: true
+      isSigningOut: true
     });
-  case LOGOUT_SUCCESS:
+  case SIGN_OUT_SUCCESS:
     return merge({}, state, {
-      loggingOut: false,
-      loggedOut: true,
-      loggedIn: false,
-      accessToken: undefined,
-      user: undefined
+      isSigningOut: false,
+      isSignedOut: true,
+      isSignedIn: false,
+      accessToken: null
     });
-  case LOGOUT_FAILURE:
+  case SIGN_OUT_FAILURE:
     return merge({}, state, {
-      loggingOut: false
+      isSigningOut: false
     });
   case TOKEN_INFO_REQUEST:
     return merge({}, state, {
-      loggingIn: true
+      isTokenChecking: true
     });
   case TOKEN_INFO_SUCCESS:
     return merge({}, state, {
-      loggingIn: false,
-      loggedIn: true
+      isTokenChecking: false,
+      isTokenValid: true,
+      isSignedIn: true
     });
   case TOKEN_INFO_FAILURE:
-    break;
+    return merge({}, state, {
+      isTokenChecking: false,
+      isTokenValid: false,
+      isSignedIn: false,
+      accessToken: null
+    });
   }
   return state;
 }
 
-export function isLoggedIn(globalState) {
-  return globalState.auth.loggedIn;
+export function redirectIfSignedIn(redirectUrl = '/') {
+  return (dispatch, getState) => {
+    const { isSignedIn, accessToken } = getState().auth;
+    (accessToken || isSignedIn) && dispatch(pushState(null, redirectUrl));
+  };
 }
 
-export function login(username, password){
+export function signIn(username, password){
   return {
     apiMiddleware: {
-      types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
+      types: [SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE],
       caller: (api) => {
         return api.authenticate(username, password);
+      },
+      after: (action, dispatch, getState) => {
+        if(action.type === SIGN_IN_SUCCESS) {
+          const nextPath = getState().router.location.query.nextPath || '/';
+          utils.saveToken(action.response.access_token);
+          dispatch(pushState(null, nextPath));
+        }
       }
-      // , after: (action, dispatch, getState) => {
-      //   if(action.type === 'LOGIN_SUCCESS') {
-      //     const nextPath = getState().router.location.query.nextPath || '/';
-      //     utils.saveToken(action.response.access_token);
-      //     dispatch(pushState(null, nextPath));
-      //   }
-      // }
     }
   };
 }
@@ -102,18 +109,18 @@ export function authenticateUser(){
       caller: (api, getState) => {
         const { accessToken } = getState().auth;
         return api.fetchTokenInfo(accessToken);
+      },
+      after: (action, dispatch, getState) => {
+        if (action.type === TOKEN_INFO_FAILURE) {
+          const nextPath = getState().router.location.pathname;
+          dispatch(pushState(null, '/sign_in', { nextPath }));
+        }
       }
-      // , after: (action, dispatch, getState) => {
-      //   if (action.type === 'TOKEN_INFO_FAILURE') {
-      //     const nextPath = getState().router.location.pathname;
-      //     dispatch(pushState(null, '/sign_in', { nextPath }));
-      //   }
-      // }
     }
   };
 }
 
-export function logout() {
+export function signOut() {
   return (dispatch) => {
     utils.removeToken();
     dispatch({

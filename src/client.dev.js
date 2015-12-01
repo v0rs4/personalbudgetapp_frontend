@@ -14,7 +14,6 @@ import {Root} from './containers';
 import {retrieveToken} from './utils';
 // Create store
 const store = createStore();
-window.store = store;
 // Init accessToken
 store.dispatch(setAccessToken(retrieveToken()));
 // Render <Root />

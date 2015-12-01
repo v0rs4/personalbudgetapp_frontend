@@ -1,20 +1,22 @@
-// React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-// Redux
 import {connect} from 'react-redux';
-// Actions
-import { signIn, checkUserSignedIn } from '../../action_creators';
-// Component
+import { signIn, redirectIfSignedIn } from 'redux/bundles/auth';
 import Form from './Form';
 
 const SignIn =  React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount: function() {
-    this.props.checkUserSignedIn({redirectUrl: '/'});
-    document.body.classList.add('gray-bg');
+    this.props.redirectIfSignedIn();
+    this.addClassToBody();
   },
   componentWillUnmount: function(){
+    this.removeClassFromBody();
+  },
+  addClassToBody: function(){
+    document.body.classList.add('gray-bg');
+  },
+  removeClassFromBody: function(){
     document.body.classList.remove('gray-bg');
   },
   render: function() {
@@ -31,5 +33,5 @@ const SignIn =  React.createClass({
 
 export default connect(
   () => ({}),
-  { signIn, checkUserSignedIn }
+  { signIn, redirectIfSignedIn }
 )(SignIn);

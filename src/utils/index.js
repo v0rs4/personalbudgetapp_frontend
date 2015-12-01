@@ -1,3 +1,5 @@
+export * as api from './api';
+
 export function retrieveToken(){
   return localStorage.getItem('accessToken');
 }

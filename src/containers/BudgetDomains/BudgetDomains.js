@@ -1,14 +1,11 @@
 
-// React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-// Redux
 import {connect} from 'react-redux';
 import {
   authenticateUser,
   fetchBudgetDomains
-} from '../../action_creators';
-// Component
+} from 'redux/bundles/budgetDomains';
 import Table from './Table';
 
 const BudgetDomains =  React.createClass({

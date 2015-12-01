@@ -44,6 +44,7 @@ export default React.createClass({
           </div>
           <div className="wrapper wrapper-content">
             <div className="container">
+              {this.props.hello}
               {this.props.children}
             </div>
           </div>

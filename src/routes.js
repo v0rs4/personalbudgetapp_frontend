@@ -2,7 +2,7 @@
 import React from 'react';
 /*eslint-enable */
 import { Route, IndexRoute } from 'react-router';
-import Guardian from './misc/Guardian';
+import { guardian } from './helpers';
 
 import {
   BareLayout,
@@ -18,12 +18,10 @@ import {
 
 export default (
   <Route component={BareLayout}>
-    <Route component={Guardian}>
-      <Route path='/' component={ApplicationLayout}>
-        <IndexRoute component={Dashboard} />
-        <Route path="budget_domains" component={BudgetDomains} />
-        <Route path="budget_domains/:budgetDomainId/categories" component={BudgetCategories} />
-      </Route>
+    <Route path='/' component={guardian(ApplicationLayout)}>
+      <IndexRoute component={guardian(Dashboard)} />
+      <Route path="budget_domains" component={guardian(BudgetDomains)} />
+      <Route path="budget_domains/:budgetDomainId/categories" component={guardian(BudgetCategories)} />
     </Route>
     <Route path="/sign_in" component={SignIn} />
   </Route>

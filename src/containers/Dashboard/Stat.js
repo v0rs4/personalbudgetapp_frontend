@@ -2,7 +2,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import {IBox, IBoxTitle, IBoxContent } from '../../shared/IBox';
+import {IBox, IBoxTitle, IBoxContent } from 'components/IBox';
 
 export default React.createClass({
   mixins: [PureRenderMixin],

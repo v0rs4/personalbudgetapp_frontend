@@ -1,10 +1,7 @@
-// React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-// Redux
-import {connect} from 'react-redux';
-import {fetchBudgetCategories} from '../../action_creators';
-// Component
+import { connect } from 'react-redux';
+import { fetchBudgetCategories } from 'redux/bundles/budgetCategories';
 import Table from './Table';
 
 const BudgetCategories = React.createClass({
