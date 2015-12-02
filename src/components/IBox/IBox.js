@@ -1,8 +1,7 @@
-// React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-export const IBox = React.createClass({
+const IBox = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <div className="ibox float-e-margins">
@@ -11,7 +10,7 @@ export const IBox = React.createClass({
   }
 });
 
-export const IBoxTitle = React.createClass({
+IBox.Title = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <div className="ibox-title">
@@ -21,7 +20,7 @@ export const IBoxTitle = React.createClass({
   }
 });
 
-export const IBoxContent = React.createClass({
+IBox.Content = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <div className="ibox-content">
@@ -29,3 +28,5 @@ export const IBoxContent = React.createClass({
     </div>;
   }
 });
+
+export default IBox;

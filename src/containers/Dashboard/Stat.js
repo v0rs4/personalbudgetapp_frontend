@@ -1,8 +1,6 @@
-// React
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-
-import {IBox, IBoxTitle, IBoxContent } from 'components/IBox';
+import { IBox } from 'components';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
@@ -20,12 +18,12 @@ export default React.createClass({
     const { label, amount, currency, title, subtitle } = this.props;
     return (
       <IBox>
-        <IBoxTitle title={title} label={label}/>
-        <IBoxContent>
+        <IBox.Title title={title} label={label}/>
+        <IBox.Content>
           <h1 className="no-margins">{amount} <span style={{fontSize: '0.4em'}}>{currency}</span></h1>
           {this.percentStat()}
           <small>{subtitle}</small>
-        </IBoxContent>
+        </IBox.Content>
       </IBox>
     );
   }
