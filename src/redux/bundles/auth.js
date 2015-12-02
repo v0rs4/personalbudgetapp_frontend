@@ -1,5 +1,5 @@
 import merge from 'lodash.merge';
-import * as utils from 'utils';
+import { saveToken, removeToken } from 'helpers';
 import { pushState } from 'redux-router';
 
 const SET_ACCESS_TOKEN = 'auth/setAccessToken';
@@ -94,7 +94,7 @@ export function signIn(username, password){
       after: (action, dispatch, getState) => {
         if(action.type === SIGN_IN_SUCCESS) {
           const nextPath = getState().router.location.query.nextPath || '/';
-          utils.saveToken(action.response.access_token);
+          saveToken(action.response.access_token);
           dispatch(pushState(null, nextPath));
         }
       }
@@ -122,7 +122,7 @@ export function authenticateUser(){
 
 export function signOut() {
   return (dispatch) => {
-    utils.removeToken();
+    removeToken();
     dispatch({
       type: 'SIGN_OUT'
     });

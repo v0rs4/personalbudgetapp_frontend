@@ -1,10 +1,10 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { reduxReactRouter } from 'redux-router';
 import thunkMiddleware from 'redux-thunk';
 import apiMiddleware from './middlewares/api';
 import createHistory from 'history/lib/createBrowserHistory';
 import routes from '../routes';
-import * as api from '../utils/api';
+import { api } from '../helpers';
 import reducer from './reducer';
 // devtools
 import createLogger from 'redux-logger';
