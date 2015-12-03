@@ -2,6 +2,7 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import { authenticateUser } from 'redux/bundles/auth';
+import { ThreeBounceSpinner } from 'components/spinners';
 
 export default function(Component) {
   const Guardian = React.createClass({
@@ -17,9 +18,12 @@ export default function(Component) {
     componentDidUpdate: function() {
       this.checkUserSignedIn();
     },
+    renderSpinner: function() {
+      return <div className='screen-center'><ThreeBounceSpinner /></div>;
+    },
     render: function() {
-      const { userSignedIn } = this.props;
-      return userSignedIn ? <Component {...this.props} /> : <p>Authenticating... (spinner)</p>;
+      const { props: { userSignedIn }, renderSpinner } = this;
+      return userSignedIn ? <Component {...this.props} /> : renderSpinner();
     }
   });
 
