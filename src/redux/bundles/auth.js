@@ -6,9 +6,7 @@ const SET_ACCESS_TOKEN = 'auth/setAccessToken';
 const SIGN_IN_REQUEST = 'auth/signInRequest';
 const SIGN_IN_SUCCESS = 'auth/signInSuccess';
 const SIGN_IN_FAILURE = 'auth/signInFailure';
-const SIGN_OUT_REQUEST = 'auth/signOutRequest';
-const SIGN_OUT_SUCCESS = 'auth/signOutSuccess';
-const SIGN_OUT_FAILURE = 'auth/signOutFailure';
+const SIGN_OUT = 'auth/signOut';
 const TOKEN_INFO_REQUEST = 'auth/tokenInfoRequest';
 const TOKEN_INFO_SUCCESS = 'auth/tokenInfoSuccess';
 const TOKEN_INFO_FAILURE = 'auth/tokenInfoFailure';
@@ -16,9 +14,7 @@ const TOKEN_INFO_FAILURE = 'auth/tokenInfoFailure';
 const INITIAL_STATE = {
   accessToken: null,
   isSigningIn: false,
-  isSignedIn: false,
-  isSigningOut: false,
-  isSignedOut: false
+  isSignedIn: false
 };
 
 export default function(state = INITIAL_STATE, action){
@@ -41,20 +37,10 @@ export default function(state = INITIAL_STATE, action){
     return merge({}, state, {
       isSigningIn: false
     });
-  case SIGN_OUT_REQUEST:
+  case SIGN_OUT:
     return merge({}, state, {
-      isSigningOut: true
-    });
-  case SIGN_OUT_SUCCESS:
-    return merge({}, state, {
-      isSigningOut: false,
-      isSignedOut: true,
       isSignedIn: false,
       accessToken: null
-    });
-  case SIGN_OUT_FAILURE:
-    return merge({}, state, {
-      isSigningOut: false
     });
   case TOKEN_INFO_REQUEST:
     return merge({}, state, {
@@ -121,11 +107,10 @@ export function authenticateUser(){
 }
 
 export function signOut() {
+  console.log('signOut');
   return (dispatch) => {
     removeToken();
-    dispatch({
-      type: 'SIGN_OUT'
-    });
+    dispatch({ type: SIGN_OUT });
   };
 }
 

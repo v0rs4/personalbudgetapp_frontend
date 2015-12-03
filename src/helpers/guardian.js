@@ -7,9 +7,15 @@ export default function(Component) {
   const Guardian = React.createClass({
     displayName: 'Guardian',
     mixins: [PureRenderMixin],
-    componentWillMount: function(){
+    checkUserSignedIn: function(){
       const { userSignedIn, authenticateUser } = this.props;
       !userSignedIn && authenticateUser();
+    },
+    componentWillMount: function(){
+      this.checkUserSignedIn();
+    },
+    componentDidUpdate: function() {
+      this.checkUserSignedIn();
     },
     render: function() {
       const { userSignedIn } = this.props;
