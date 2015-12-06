@@ -1,0 +1,36 @@
+state
+├── auth
+│   ├── accessToken
+│   ├── refreshToken
+│   ├── createdAt
+│   ├── tokenType
+├── budgetDomains
+│   ├── items
+│   ├── isFetching
+│   └── isFetched
+├── user
+│   ├── entity
+│   │   └── email
+│   ├── expenses
+│   │   ├── items
+│   │   ├── isFetching
+│   │   └── isFetched
+│   ├── incomes
+│   ├── debts
+│   └── transactions
+├── budgetDomain
+│   ├── entity
+│   │   ├── name
+│   │   └── description
+│   ├── categories
+│   ├── expenses
+│   ├── incomes
+│   ├── debts
+│   ├── transfers
+│   └── transactions
+│       ├── items
+│       ├── isFetching
+│       └── isFetched
+├── budgetExpense
+├── budgetIncome
+└── budgetDebt

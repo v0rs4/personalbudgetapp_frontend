@@ -43,6 +43,13 @@ export function fetchBudgetDomains(accessToken) {
   .then(parseJSON);
 }
 
+export function fetchBudgetTransactions(accessToken, budgetDomainId) {
+  return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/transactions`, {
+    headers: Object.assign({}, headers, authHeader(accessToken))
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
 
 export function fetchBudgetCategories(accessToken, budgetDomainId) {
   return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/categories`, {
@@ -51,7 +58,6 @@ export function fetchBudgetCategories(accessToken, budgetDomainId) {
   .then(checkStatus)
   .then(parseJSON);
 }
-
 
 export function fetchBudgetExpenses(accessToken, budgetDomainId) {
   return fetch(`${API_BASE_URL}/api/v1/budget_domains/${budgetDomainId}/expenses`, {
@@ -100,7 +106,6 @@ export function fetchBudgetMembers(accessToken, budgetDomainId) {
   .then(checkStatus)
   .then(parseJSON);
 }
-
 
 export function authenticate(username, password) {
   return fetch(`${API_BASE_URL}/oauth/token`, {

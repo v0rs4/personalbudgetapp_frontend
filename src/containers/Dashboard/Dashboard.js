@@ -3,7 +3,7 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 import Stat from './Stat';
-import TransactionsHistory from './TransactionsHistory';
+import TransactionsBox from './TransactionsBox';
 
 const Dashboard =  React.createClass({
   mixins: [PureRenderMixin],
@@ -20,7 +20,7 @@ const Dashboard =  React.createClass({
         </div>
         <div className="row">
           <div className="col-xs-12">
-            <TransactionsHistory />
+            <TransactionsBox />
           </div>
         </div>
       </div>
