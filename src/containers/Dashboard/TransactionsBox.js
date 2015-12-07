@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchBudgetDomainTransactions } from 'redux/bundles/budgetDomain/transactions';
 import { IBox } from 'components';
 import { FadingCircleSpinner } from 'components/spinners';
+import Greedy from 'components/Greedy/Greedy';
 
 const TransactionsBox =  React.createClass({
   mixins: [PureRenderMixin],
@@ -11,32 +12,24 @@ const TransactionsBox =  React.createClass({
     this.props.fetchBudgetDomainTransactions();
   },
   renderTable: function() {
-    return (
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Account</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Comment</th>
-            <th>Kind</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.budgetDomainTransactions.map(entry =>
-            <tr key={entry.id}>
-              <td>{entry.attributes.user_email}</td>
-              <td>{entry.attributes.account_name}</td>
-              <td>{entry.attributes.category_name}</td>
-              <td>{entry.attributes.amount}</td>
-              <td>{entry.attributes.comment}</td>
-              <td>{entry.attributes.kind}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
+    const { budgetDomainTransactions } = this.props;
+    const headerMetadata = [
+      { displayTitle: 'User' },
+      { displayTitle: 'Account' },
+      { displayTitle: 'Category' },
+      { displayTitle: 'Amount' },
+      { displayTitle: 'Comment' },
+      { displayTitle: 'Kind' }
+    ];
+    const columnMetadata = [
+      { value: data => data.attributes.user_email },
+      { value: data => data.attributes.account_name },
+      { value: data => data.attributes.category_name },
+      { value: data => data.attributes.amount },
+      { value: data => data.attributes.comment },
+      { value: data => data.attributes.kind }
+    ];
+    return <Greedy data={budgetDomainTransactions} columnMetadata={columnMetadata} headerMetadata={headerMetadata} />;
   },
   renderSpinner: function() {
     return <FadingCircleSpinner />;

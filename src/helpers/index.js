@@ -1,4 +1,5 @@
 export guardian from './guardian';
+export paginator from './paginator';
 export * as api from './api';
 
 export function retrieveToken(){
