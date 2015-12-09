@@ -22,18 +22,18 @@ gulp.task('sass', function() {
         cascade: false
       })
     )
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./static'));
 });
 
 gulp.task('vendor:css', function(){
   return gulp.src(paths.vendorStyles)
     .pipe(concat({ path: 'vendor.css' }))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./static'));
 });
 
 gulp.task('fonts', function(){
   gulp.src(paths.fonts)
-    .pipe(gulp.dest('./dist/fonts'))
+    .pipe(gulp.dest('./static/fonts'))
 })
 
 

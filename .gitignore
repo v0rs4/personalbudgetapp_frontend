@@ -1,6 +1,6 @@
 node_modules
 bower_components
-dist/*.js
-dist/*.css
-dist/fonts
+static/*.js
+static/*.css
+static/fonts
 npm-debug.log
