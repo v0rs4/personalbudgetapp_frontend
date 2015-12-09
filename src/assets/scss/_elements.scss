@@ -137,6 +137,12 @@
   text-decoration: none;
 }
 
+.pagination > li > .disabled {
+  background-color: #e2e2e2;
+  border-color: #dddddd;
+  cursor: no-drop;
+}
+
 /* TOOLTIPS */
 
 .tooltip-inner {
