@@ -1,0 +1,19 @@
+{
+  "name": "personalbudget",
+  "description": "PersonalBudgetApp",
+  "main": "bin/server.js",
+  "license": "ISC",
+  "homepage": "https://github.com/vladislavpauk/personalbudgetapp_frontend",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "components-font-awesome": "~4.5.0"
+  }
+}
